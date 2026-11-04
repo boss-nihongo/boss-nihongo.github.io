@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="看狗血霸總小說，不知不覺背日檢 JLPT 單字。N5–N4、N3–N2 兩級，含假名、句型、日文朗讀與課表。">
+<meta name="theme-color" content="#1d5fbf">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>霸總教你背日文</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;800&family=Noto+Serif+TC:wght@400;600&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+/* Layout: 單欄閱讀 App＋底部分頁；藍色調（藍染＋和紙） */
+:root{
+  --bg:#eef3f9; --paper:#fbfdff; --ink:#14233a; --mute:#5d6f88; --line:#d6e1ee;
+  --accent:#1d5fbf; --accent-2:#0f3f86; --soft:#dce8f8; --rt:#3b7bc9; --chip:#e6eef8;
+  --ok:#1f8a5b; --sheet:#ffffff; --shadow:0 8px 24px rgba(20,50,100,.10);
+  --f-disp:"Shippori Mincho B1","Noto Serif TC",serif;
+  --f-read:"Noto Serif TC","Shippori Mincho B1",serif;
+  --f-ui:"Noto Sans TC",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0c1524; --paper:#121e33; --ink:#e3ecf8; --mute:#93a6c2; --line:#22324d;
+  --accent:#6aa8ff; --accent-2:#a9ccff; --soft:#1a2c4b; --rt:#8ab9f5; --chip:#1a2741;
+  --ok:#5fd29c; --sheet:#15223a; --shadow:0 8px 24px rgba(0,0,0,.45); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1524; --paper:#121e33; --ink:#e3ecf8; --mute:#93a6c2; --line:#22324d;
+  --accent:#6aa8ff; --accent-2:#a9ccff; --soft:#1a2c4b; --rt:#8ab9f5; --chip:#1a2741;
+  --ok:#5fd29c; --sheet:#15223a; --shadow:0 8px 24px rgba(0,0,0,.45); color-scheme:dark}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:640px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:16px 110px}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,.w:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+h1,h2,h3,h4{text-wrap:balance}
+
+.hero{display:grid;gap:6px;padding-block:6px 14px}
+.eyebrow{font-size:12px;letter-spacing:.16em;color:var(--accent);font-weight:700}
+h1{font-family:var(--f-disp);font-weight:800;font-size:clamp(28px,7.5vw,38px);line-height:1.2;margin:0}
+h1 rt{font-size:.3em;color:var(--rt);font-family:var(--f-ui);font-weight:500;letter-spacing:.1em}
+.tag{font-size:14px;color:var(--mute)}
+.sec{display:grid;gap:10px;margin-block:18px}
+.sec>h3{margin:0;font-size:13px;letter-spacing:.12em;color:var(--mute);font-weight:700}
+
+.seg{display:flex;background:var(--chip);border-radius:10px;padding:3px;gap:3px}
+.seg button{flex:1;border:0;background:none;border-radius:8px;padding:7px 6px;font-size:13px;color:var(--mute);font-weight:600;white-space:nowrap}
+.seg button[aria-pressed="true"]{background:var(--paper);color:var(--accent);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.modebox{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:grid;gap:8px}
+.modebox .lab{font-size:12px;color:var(--mute);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.demo{font-family:var(--f-read);font-size:16px}
+
+.levels{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.lv{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 14px;text-align:left;display:grid;gap:2px}
+.lv b{font-family:var(--f-disp);font-size:22px}
+.lv span{font-size:12px;color:var(--mute)}
+.lv[aria-pressed="true"]{border-color:var(--accent);background:var(--soft)}
+.lv[aria-pressed="true"] b{color:var(--accent)}
+
+.today{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;border-radius:16px;padding:16px;display:grid;gap:8px;box-shadow:var(--shadow)}
+:root[data-theme="dark"] .today{color:#0c1524}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .today{color:#0c1524}}
+.today small{opacity:.85;font-size:12px;letter-spacing:.1em}
+.today h2{margin:0;font-family:var(--f-disp);font-size:22px}
+.today p{margin:0;font-size:14px;opacity:.92}
+.today .go{justify-self:start;background:rgba(255,255,255,.95);color:#0f3f86;border:0;border-radius:99px;padding:8px 18px;font-weight:700}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center}
+.stat b{display:block;font-size:22px;font-variant-numeric:tabular-nums;color:var(--accent)}
+.stat span{font-size:12px;color:var(--mute)}
+.how{display:grid;gap:6px;font-size:14px;color:var(--mute);margin:0;padding-left:20px}
+
+.list{display:grid;gap:12px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px;text-align:left;display:grid;gap:6px}
+.card h3{margin:0;font-family:var(--f-disp);font-size:19px}
+.card p{margin:0;color:var(--mute);font-size:14px}
+.meta{display:flex;flex-wrap:wrap;gap:6px}
+.pill{font-size:12px;background:var(--chip);border-radius:99px;padding:2px 10px;color:var(--mute)}
+.pill.ok{color:var(--ok);font-weight:700}
+.pill.ac{color:var(--accent);background:var(--soft);font-weight:700}
+
+/* 課表 */
+.day{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 14px;text-align:left}
+.day .n{width:44px;height:44px;border-radius:12px;background:var(--chip);display:grid;place-items:center;font-weight:700;color:var(--mute);font-size:12px;line-height:1.1;text-align:center}
+.day.cur{border-color:var(--accent)} .day.cur .n{background:var(--accent);color:#fff}
+.day.done .n{background:var(--soft);color:var(--ok)}
+.day h4{margin:0;font-family:var(--f-disp);font-size:17px}
+.tasks{display:flex;gap:6px;flex-wrap:wrap;font-size:11px;color:var(--mute)}
+.tasks i{font-style:normal}
+.tasks .y{color:var(--ok)}
+.cal{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px;display:grid;gap:8px}
+.cal .hd{display:flex;justify-content:space-between;font-weight:700}
+.grid7{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;font-size:12px;font-variant-numeric:tabular-nums}
+.grid7 .wd{color:var(--mute)}
+.grid7 .d{aspect-ratio:1;display:grid;place-items:center;border-radius:8px;max-width:100%}
+.grid7 .d.on{background:var(--accent);color:#fff;font-weight:700}
+.grid7 .d.td{outline:1.5px solid var(--accent)}
+
+/* reader */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:grid;gap:8px;padding-block:10px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.bar .row{display:flex;align-items:center;gap:8px}
+.back{background:none;border:0;color:var(--accent);font-weight:700;padding:4px 0}
+.sp{flex:1}
+.tg{border:1px solid var(--line);background:var(--paper);border-radius:99px;padding:4px 12px;font-size:13px;white-space:nowrap}
+.tg[aria-pressed="true"]{background:var(--accent);color:#fff;border-color:var(--accent)}
+.story h2{font-family:var(--f-disp);font-size:27px;margin:4px 0 2px}
+.story .sub{color:var(--mute);font-size:13px;margin-bottom:16px}
+.story p{font-family:var(--f-read);font-size:17px;line-height:2.2;margin:0 0 14px;border-radius:8px;transition:background .2s}
+.story p.reading{background:var(--soft)}
+.story hr{border:0;text-align:center;margin:20px 0}
+.story hr::after{content:"◆ ◆ ◆";color:var(--accent);letter-spacing:.4em;font-size:10px}
+.w{color:var(--accent);font-weight:600;cursor:pointer;border-bottom:1.5px dotted var(--accent);padding:0 1px}
+.w rt,.jl rt,.ja rt{font-size:.55em;color:var(--rt);font-weight:500;font-family:var(--f-ui)}
+.g{color:var(--mute);font-size:.82em}
+.hide-g .g,.hide-g .jlz{display:none}
+.saved-w{background:var(--soft)}
+.jl{display:inline;background:var(--chip);border-radius:6px;padding:2px 6px;color:var(--accent-2);font-weight:600;cursor:pointer}
+.jlz{color:var(--mute);font-size:.82em}
+
+.box{margin-top:20px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:10px}
+.box h4{margin:0;font-family:var(--f-disp);font-size:18px;display:flex;align-items:center;gap:8px}
+.box h4 .pill{font-family:var(--f-ui)}
+.gram .pt{font-family:var(--f-disp);font-size:20px;color:var(--accent)}
+.gram .how{font-size:14px;color:var(--mute)}
+.line{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
+.line:first-of-type{border-top:0}
+.ja{font-family:var(--f-read);font-size:17px;line-height:2}
+.zh{color:var(--mute);font-size:14px}
+.say{border:1px solid var(--line);background:var(--paper);border-radius:99px;width:38px;height:38px;display:grid;place-items:center;font-size:15px}
+.vlist{display:grid}
+.vrow{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:9px 0;border:0;border-top:1px solid var(--line);text-align:left;background:none}
+.vrow:first-child{border-top:0}
+.vrow .jp{font-family:var(--f-disp);font-size:18px;min-width:5.5em}
+.vrow .jp small{display:block;font-size:11px;color:var(--rt);font-family:var(--f-ui)}
+.vrow .lvp{font-size:11px;color:var(--mute)}
+.btn{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:10px 14px;font-weight:700}
+.btn.ghost{background:none;color:var(--accent);border:1px solid var(--accent)}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+.q{display:grid;gap:8px}
+.q .qw{font-family:var(--f-disp);font-size:22px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opt{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:10px;text-align:center}
+.opt.right{border-color:var(--ok);color:var(--ok);font-weight:700}
+.opt.wrong{border-color:#c0392b;color:#c0392b}
+.player{position:fixed;left:0;right:0;bottom:calc(58px + env(safe-area-inset-bottom,0px));z-index:9;display:flex;justify-content:center;pointer-events:none;padding-inline:16px}
+.player>div{pointer-events:auto;background:var(--ink);color:var(--bg);border-radius:99px;padding:8px 10px 8px 16px;display:flex;gap:10px;align-items:center;box-shadow:var(--shadow);font-size:13px}
+.player button{border:0;background:var(--accent);color:#fff;border-radius:99px;padding:5px 12px;font-weight:700}
+
+/* sheet */
+.scrim{position:fixed;inset:0;background:rgba(5,15,35,.45);z-index:20}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;background:var(--sheet);border-radius:18px 18px 0 0;box-shadow:var(--shadow);padding:18px max(18px,env(safe-area-inset-right,0px)) calc(18px + env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px));max-width:640px;margin:0 auto;display:grid;gap:10px;max-height:86vh;overflow:auto;animation:up .2s ease-out}
+@keyframes up{from{transform:translateY(30px);opacity:.6}}
+@media (prefers-reduced-motion:reduce){.sheet{animation:none}.story p{transition:none}}
+.sh-top{display:flex;align-items:flex-start;gap:10px}
+.sh-word{font-family:var(--f-disp);font-size:34px;line-height:1.2}
+.sh-read{color:var(--rt);font-size:15px}
+.sh-zh{font-size:20px;font-weight:700}
+.sh-ex{background:var(--chip);border-radius:10px;padding:10px 12px;display:grid;gap:4px}
+.note{font-size:13px;color:var(--ink);background:var(--soft);border-radius:8px;padding:8px 10px}
+.conj{width:100%;border-collapse:collapse;font-size:14px}
+.conj td{border-top:1px solid var(--line);padding:5px 4px}
+.conj td:first-child{color:var(--mute);width:5.5em}
+.x{margin-left:auto;background:none;border:0;font-size:22px;color:var(--mute);line-height:1}
+.tip ol{margin:0;padding-left:20px;display:grid;gap:4px;font-size:14px}
+
+/* tabs */
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:10;background:var(--paper);border-top:1px solid var(--line);display:flex;justify-content:center;gap:2px;padding:5px max(8px,env(safe-area-inset-right,0px)) calc(5px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px))}
+.tab{flex:1;max-width:150px;background:none;border:0;padding:6px 4px;border-radius:10px;font-weight:600;color:var(--mute);font-size:12px;display:grid;justify-items:center;gap:1px}
+.tab b{font-size:18px;line-height:1.1;font-weight:400}
+.tab[aria-selected="true"]{color:var(--accent);background:var(--soft)}
+.empty{color:var(--mute);text-align:center;padding:40px 0;font-size:14px}
+.foot{font-size:12px;color:var(--mute);text-align:center;margin-top:24px}
+</style>
+
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<div id="playerRoot"></div>
+<nav class="tabs" role="tablist">
+  <button class="tab" role="tab" data-tab="home"><b>⌂</b>首頁</button>
+  <button class="tab" role="tab" data-tab="plan"><b>▦</b>課表</button>
+  <button class="tab" role="tab" data-tab="stories"><b>❏</b>故事</button>
+  <button class="tab" role="tab" data-tab="book"><b>☆</b>生字本</button>
+</nav>
+<div id="sheetRoot"></div>
+
+<script>
+const DATA = {"dict": {"だめ": {"r": "だめ", "w": "駄目", "pos": "な形容詞", "zh": "不行", "lv": "N5", "ex": "ここで{寝|ね}てはだめです。", "exzh": "不可以在這裡睡覺。"}, "コーヒー": {"r": "コーヒー", "pos": "名詞", "zh": "咖啡", "lv": "N5", "ex": "コーヒーを{一杯|いっぱい}ください。", "exzh": "請給我一杯咖啡。"}, "不安": {"r": "ふあん", "pos": "名詞・な形容詞", "zh": "不安", "lv": "N3", "ex": "{明日|あした}の{試験|しけん}が{不安|ふあん}だ。", "exzh": "我對明天的考試很不安。"}, "予定": {"r": "よてい", "pos": "名詞", "zh": "行程", "lv": "N4", "ex": "{明日|あした}の{予定|よてい}は？", "exzh": "明天的行程是什麼？"}, "事故": {"r": "じこ", "pos": "名詞", "zh": "事故", "lv": "N3", "ex": "{事故|じこ}で{電車|でんしゃ}が{遅|おく}れた。", "exzh": "電車因為事故誤點了。"}, "交渉": {"r": "こうしょう", "pos": "名詞・する動詞", "zh": "談判", "lv": "N2", "ex": "{値段|ねだん}を{交渉|こうしょう}する。", "exzh": "談價格。"}, "仕事": {"r": "しごと", "pos": "名詞", "zh": "工作", "lv": "N5", "ex": "{仕事|しごと}は{楽|たの}しいですか。", "exzh": "工作開心嗎？"}, "他人": {"r": "たにん", "pos": "名詞", "zh": "陌生人", "lv": "N3", "ex": "{他人|たにん}のふりをしないで。", "exzh": "不要裝作不認識我。", "note": "指「跟自己沒關係的人」，不是中文的「別人」那麼廣。"}, "会社": {"r": "かいしゃ", "pos": "名詞", "zh": "公司", "lv": "N5", "ex": "{会社|かいしゃ}に{行|い}きます。", "exzh": "我要去公司。"}, "会議": {"r": "かいぎ", "pos": "名詞", "zh": "會議", "lv": "N4", "ex": "{三時|さんじ}から{会議|かいぎ}があります。", "exzh": "三點開始有會議。"}, "偶然": {"r": "ぐうぜん", "pos": "名詞・副詞", "zh": "巧合", "lv": "N3", "ex": "{駅|えき}で{偶然|ぐうぜん}{友達|ともだち}に{会|あ}った。", "exzh": "在車站碰巧遇到朋友。"}, "傘": {"r": "かさ", "pos": "名詞", "zh": "傘", "lv": "N5", "ex": "{傘|かさ}を{持|も}っていますか。", "exzh": "你有帶傘嗎？"}, "優しい": {"r": "やさしい", "pos": "い形容詞", "zh": "溫柔", "lv": "N4", "ex": "{彼|かれ}はとても{優|やさ}しい{人|ひと}です。", "exzh": "他是個很溫柔的人。"}, "冗談": {"r": "じょうだん", "pos": "名詞", "zh": "玩笑", "lv": "N3", "ex": "{冗談|じょうだん}だよ、{怒|おこ}らないで。", "exzh": "開玩笑的啦，別生氣。"}, "写真": {"r": "しゃしん", "pos": "名詞", "zh": "照片", "lv": "N5", "ex": "{写真|しゃしん}を{撮|と}ってもいいですか。", "exzh": "可以拍照嗎？"}, "冷蔵庫": {"r": "れいぞうこ", "pos": "名詞", "zh": "冰箱", "lv": "N5", "ex": "{冷蔵庫|れいぞうこ}に{牛乳|ぎゅうにゅう}があります。", "exzh": "冰箱裡有牛奶。"}, "冷静": {"r": "れいせい", "pos": "な形容詞", "zh": "冷靜", "lv": "N2", "ex": "{冷静|れいせい}に{考|かんが}えよう。", "exzh": "冷靜想一想吧。"}, "勘違い": {"r": "かんちがい", "pos": "名詞・する動詞", "zh": "搞錯", "lv": "N2", "ex": "{私|わたし}の{勘違|かんちが}いでした。", "exzh": "是我搞錯了。", "note": "自己想錯、認錯；「誤解」偏向別人理解錯你。"}, "勝負": {"r": "しょうぶ", "pos": "名詞・する動詞", "zh": "比賽", "lv": "N2", "ex": "{俺|おれ}と{勝負|しょうぶ}しろ。", "exzh": "跟我比一場。"}, "医者": {"r": "いしゃ", "pos": "名詞", "zh": "醫生", "lv": "N5", "ex": "{医者|いしゃ}に{行|い}きましたか。", "exzh": "你去看醫生了嗎？"}, "危ない": {"r": "あぶない", "pos": "い形容詞", "zh": "危險", "lv": "N5", "ex": "{夜|よる}の{一人歩|ひとりある}きは{危|あぶ}ない。", "exzh": "晚上一個人走路很危險。"}, "反省": {"r": "はんせい", "pos": "名詞・する動詞", "zh": "反省", "lv": "N3", "ex": "{少|すこ}しは{反省|はんせい}しなさい。", "exzh": "你稍微反省一下。"}, "取引": {"r": "とりひき", "pos": "名詞・する動詞", "zh": "交易", "lv": "N2", "ex": "あの{会社|かいしゃ}と{取引|とりひき}がある。", "exzh": "我們跟那家公司有生意往來。"}, "名前": {"r": "なまえ", "pos": "名詞", "zh": "名字", "lv": "N5", "ex": "お{名前|なまえ}は{何|なん}ですか。", "exzh": "請問您叫什麼名字？"}, "告白": {"r": "こくはく", "pos": "名詞・する動詞", "zh": "告白", "lv": "N2", "ex": "{好|す}きな{人|ひと}に{告白|こくはく}した。", "exzh": "我向喜歡的人告白了。"}, "命令": {"r": "めいれい", "pos": "名詞・する動詞", "zh": "命令", "lv": "N3", "ex": "{上司|じょうし}の{命令|めいれい}に{従|したが}う。", "exzh": "服從上司的命令。"}, "喫茶店": {"r": "きっさてん", "pos": "名詞", "zh": "咖啡廳", "lv": "N5", "ex": "{駅|えき}の{前|まえ}に{喫茶店|きっさてん}があります。", "exzh": "車站前有一間咖啡廳。"}, "嘘": {"r": "うそ", "pos": "名詞", "zh": "謊話", "lv": "N4", "ex": "{嘘|うそ}をつかないで。", "exzh": "不要說謊。"}, "噂": {"r": "うわさ", "pos": "名詞", "zh": "傳聞", "lv": "N3", "ex": "{変|へん}な{噂|うわさ}を{聞|き}いた。", "exzh": "我聽到奇怪的傳聞。"}, "地図": {"r": "ちず", "pos": "名詞", "zh": "地圖", "lv": "N5", "ex": "{地図|ちず}を{見|み}せてください。", "exzh": "請給我看地圖。"}, "壁": {"r": "かべ", "pos": "名詞", "zh": "牆壁", "lv": "N4", "ex": "{壁|かべ}に{写真|しゃしん}を{貼|は}ります。", "exzh": "把照片貼在牆上。"}, "大丈夫": {"r": "だいじょうぶ", "pos": "な形容詞", "zh": "沒事", "lv": "N5", "ex": "{私|わたし}は{大丈夫|だいじょうぶ}です。", "exzh": "我沒事。"}, "契約": {"r": "けいやく", "pos": "名詞・する動詞", "zh": "契約", "lv": "N3", "ex": "{一年|いちねん}の{契約|けいやく}を{結|むす}びました。", "exzh": "簽了一年的合約。"}, "嬉しい": {"r": "うれしい", "pos": "い形容詞", "zh": "開心", "lv": "N4", "ex": "{会|あ}えて{嬉|うれ}しいです。", "exzh": "見到你很開心。"}, "完璧": {"r": "かんぺき", "pos": "名詞・な形容詞", "zh": "完美", "lv": "N2", "ex": "{彼女|かのじょ}の{日本語|にほんご}は{完璧|かんぺき}だ。", "exzh": "她的日文很完美。"}, "実力": {"r": "じつりょく", "pos": "名詞", "zh": "實力", "lv": "N2", "ex": "{実力|じつりょく}で{勝|か}った。", "exzh": "靠實力贏了。"}, "寂しい": {"r": "さびしい", "pos": "い形容詞", "zh": "寂寞", "lv": "N4", "ex": "{一人|ひとり}は{寂|さび}しいです。", "exzh": "一個人好寂寞。"}, "寒い": {"r": "さむい", "pos": "い形容詞", "zh": "冷", "lv": "N5", "ex": "{今日|きょう}はとても{寒|さむ}いです。", "exzh": "今天非常冷。"}, "専門": {"r": "せんもん", "pos": "名詞", "zh": "專業", "lv": "N3", "ex": "{専門|せんもん}は{経済|けいざい}です。", "exzh": "我的專業是經濟。"}, "席": {"r": "せき", "pos": "名詞", "zh": "座位", "lv": "N4", "ex": "この{席|せき}は{空|あ}いていますか。", "exzh": "這個座位有人坐嗎？"}, "引っ越し": {"r": "ひっこし", "pos": "名詞", "zh": "搬家", "lv": "N4", "ex": "{来週|らいしゅう}、{引|ひ}っ{越|こ}しをします。", "exzh": "下週要搬家。"}, "心配": {"r": "しんぱい", "pos": "名詞・する動詞", "zh": "擔心", "lv": "N4", "ex": "{心配|しんぱい}しないでください。", "exzh": "請不要擔心。"}, "怖い": {"r": "こわい", "pos": "い形容詞", "zh": "可怕", "lv": "N4", "ex": "{夜|よる}の{道|みち}は{少|すこ}し{怖|こわ}いです。", "exzh": "晚上的路有點可怕。"}, "思い出": {"r": "おもいで", "pos": "名詞", "zh": "回憶", "lv": "N3", "ex": "{楽|たの}しい{思|おも}い{出|で}をありがとう。", "exzh": "謝謝你給我美好的回憶。"}, "恋人": {"r": "こいびと", "pos": "名詞", "zh": "戀人", "lv": "N3", "ex": "{恋人|こいびと}がいますか。", "exzh": "你有戀人嗎？"}, "悔しい": {"r": "くやしい", "pos": "い形容詞", "zh": "不甘心", "lv": "N3", "ex": "{試合|しあい}に{負|ま}けて{悔|くや}しい。", "exzh": "比賽輸了好不甘心。"}, "意地悪": {"r": "いじわる", "pos": "名詞・な形容詞", "zh": "壞心眼", "lv": "N3", "ex": "{意地悪|いじわる}しないでよ。", "exzh": "不要捉弄我啦。"}, "態度": {"r": "たいど", "pos": "名詞", "zh": "態度", "lv": "N3", "ex": "その{態度|たいど}は{失礼|しつれい}だ。", "exzh": "那種態度很失禮。"}, "懐かしい": {"r": "なつかしい", "pos": "い形容詞", "zh": "懷念", "lv": "N3", "ex": "この{歌|うた}は{懐|なつ}かしい。", "exzh": "這首歌好令人懷念。"}, "我儘": {"r": "わがまま", "pos": "名詞・な形容詞", "zh": "任性", "lv": "N2", "ex": "そんな{我儘|わがまま}は{許|ゆる}さない。", "exzh": "我不允許妳這麼任性。", "note": "一般常寫成假名「わがまま」。"}, "我慢": {"r": "がまん", "pos": "名詞・する動詞", "zh": "忍耐", "lv": "N3", "ex": "もう{我慢|がまん}できない。", "exzh": "我已經忍不下去了。", "note": "「我慢する」＝忍耐、忍著不做；「もう我慢できない」＝再也忍不下去。"}, "手袋": {"r": "てぶくろ", "pos": "名詞", "zh": "手套", "lv": "N4", "ex": "{手袋|てぶくろ}をしてください。", "exzh": "請戴上手套。"}, "抱きしめる": {"r": "だきしめる", "pos": "動詞", "zh": "緊緊抱住", "lv": "N2", "ex": "{彼|かれ}は{彼女|かのじょ}を{抱|だ}きしめた。", "exzh": "他緊緊抱住了她。", "vt": "v1"}, "拍手": {"r": "はくしゅ", "pos": "名詞・する動詞", "zh": "掌聲", "lv": "N3", "ex": "{大|おお}きな{拍手|はくしゅ}が{起|お}きた。", "exzh": "響起了熱烈的掌聲。"}, "指輪": {"r": "ゆびわ", "pos": "名詞", "zh": "戒指", "lv": "N3", "ex": "{彼|かれ}から{指輪|ゆびわ}をもらった。", "exzh": "我收到了他送的戒指。"}, "挑戦": {"r": "ちょうせん", "pos": "名詞・する動詞", "zh": "挑戰", "lv": "N2", "ex": "{新|あたら}しい{仕事|しごと}に{挑戦|ちょうせん}する。", "exzh": "挑戰新的工作。"}, "料理": {"r": "りょうり", "pos": "名詞・する動詞", "zh": "料理", "lv": "N5", "ex": "{母|はは}の{料理|りょうり}は{美味|おい}しいです。", "exzh": "媽媽做的菜很好吃。"}, "断る": {"r": "ことわる", "pos": "動詞", "zh": "拒絕", "lv": "N3", "ex": "{誘|さそ}いを{断|ことわ}った。", "exzh": "我拒絕了邀約。", "vt": "v5"}, "星": {"r": "ほし", "pos": "名詞", "zh": "星星", "lv": "N4", "ex": "{空|そら}に{星|ほし}がたくさんあります。", "exzh": "天上有好多星星。"}, "時計": {"r": "とけい", "pos": "名詞", "zh": "手錶", "lv": "N5", "ex": "この{時計|とけい}は{高|たか}いです。", "exzh": "這支手錶很貴。"}, "暖かい": {"r": "あたたかい", "pos": "い形容詞", "zh": "溫暖", "lv": "N5", "ex": "{今日|きょう}は{暖|あたた}かいですね。", "exzh": "今天好暖和喔。"}, "書類": {"r": "しょるい", "pos": "名詞", "zh": "文件", "lv": "N3", "ex": "この{書類|しょるい}にサインしてください。", "exzh": "請在這份文件上簽名。"}, "朝ご飯": {"r": "あさごはん", "pos": "名詞", "zh": "早餐", "lv": "N5", "ex": "{毎日|まいにち}{朝|あさ}ご{飯|はん}を{食|た}べます。", "exzh": "我每天都吃早餐。"}, "本気": {"r": "ほんき", "pos": "名詞・な形容詞", "zh": "認真", "lv": "N2", "ex": "{俺|おれ}は{本気|ほんき}だ。", "exzh": "我是認真的。"}, "机": {"r": "つくえ", "pos": "名詞", "zh": "桌子", "lv": "N5", "ex": "{机|つくえ}の{上|うえ}に{本|ほん}があります。", "exzh": "桌上有書。"}, "条件": {"r": "じょうけん", "pos": "名詞", "zh": "條件", "lv": "N3", "ex": "{一|ひと}つ{条件|じょうけん}がある。", "exzh": "我有一個條件。"}, "案内": {"r": "あんない", "pos": "名詞・する動詞", "zh": "導覽", "lv": "N4", "ex": "{町|まち}を{案内|あんない}します。", "exzh": "我帶你逛逛城裡。"}, "歌う": {"r": "うたう", "pos": "動詞", "zh": "唱歌", "lv": "N5", "ex": "{一緒|いっしょ}に{歌|うた}いましょう。", "exzh": "一起唱歌吧。", "vt": "v5"}, "正直": {"r": "しょうじき", "pos": "名詞・な形容詞", "zh": "老實", "lv": "N3", "ex": "{正直|しょうじき}に{話|はな}して。", "exzh": "老實說出來。"}, "毎日": {"r": "まいにち", "pos": "名詞・副詞", "zh": "每天", "lv": "N5", "ex": "{毎日|まいにち}{日本語|にほんご}を{勉強|べんきょう}します。", "exzh": "我每天學日文。"}, "毎晩": {"r": "まいばん", "pos": "名詞・副詞", "zh": "每天晚上", "lv": "N5", "ex": "{毎晩|まいばん}{十一時|じゅういちじ}に{寝|ね}ます。", "exzh": "我每天晚上十一點睡。"}, "毎朝": {"r": "まいあさ", "pos": "名詞・副詞", "zh": "每天早上", "lv": "N5", "ex": "{毎朝|まいあさ}コーヒーを{飲|の}みます。", "exzh": "我每天早上喝咖啡。"}, "決心": {"r": "けっしん", "pos": "名詞・する動詞", "zh": "決心", "lv": "N3", "ex": "{留学|りゅうがく}すると{決心|けっしん}した。", "exzh": "我下定決心要去留學。"}, "泣く": {"r": "なく", "pos": "動詞", "zh": "哭", "lv": "N4", "ex": "{子供|こども}が{泣|な}いています。", "exzh": "小孩在哭。", "vt": "v5"}, "無視": {"r": "むし", "pos": "名詞・する動詞", "zh": "忽視", "lv": "N2", "ex": "メッセージを{無視|むし}しないで。", "exzh": "不要已讀不回。"}, "熱": {"r": "ねつ", "pos": "名詞", "zh": "發燒", "lv": "N4", "ex": "{熱|ねつ}があるので{休|やす}みます。", "exzh": "因為發燒所以請假。"}, "牛乳": {"r": "ぎゅうにゅう", "pos": "名詞", "zh": "牛奶", "lv": "N5", "ex": "{毎朝|まいあさ}{牛乳|ぎゅうにゅう}を{飲|の}みます。", "exzh": "我每天早上喝牛奶。"}, "状況": {"r": "じょうきょう", "pos": "名詞", "zh": "狀況", "lv": "N2", "ex": "{今|いま}の{状況|じょうきょう}を{説明|せつめい}して。", "exzh": "說明一下現在的狀況。"}, "狙う": {"r": "ねらう", "pos": "動詞", "zh": "盯上", "lv": "N2", "ex": "{優勝|ゆうしょう}を{狙|ねら}う。", "exzh": "目標是拿冠軍。", "vt": "v5"}, "甘い": {"r": "あまい", "pos": "い形容詞", "zh": "甜", "lv": "N5", "ex": "このお{菓子|かし}は{甘|あま}すぎる。", "exzh": "這個點心太甜了。"}, "生意気": {"r": "なまいき", "pos": "名詞・な形容詞", "zh": "囂張", "lv": "N2", "ex": "{生意気|なまいき}な{口|くち}をきくな。", "exzh": "說話別那麼囂張。"}, "疲れる": {"r": "つかれる", "pos": "動詞", "zh": "累", "lv": "N4", "ex": "{今日|きょう}はとても{疲|つか}れました。", "exzh": "今天好累。", "vt": "v1"}, "病気": {"r": "びょうき", "pos": "名詞", "zh": "生病", "lv": "N5", "ex": "{病気|びょうき}で{学校|がっこう}を{休|やす}みました。", "exzh": "因為生病沒去學校。"}, "痛い": {"r": "いたい", "pos": "い形容詞", "zh": "痛", "lv": "N5", "ex": "{頭|あたま}が{痛|いた}いです。", "exzh": "我頭痛。"}, "相変わらず": {"r": "あいかわらず", "pos": "副詞", "zh": "依舊", "lv": "N2", "ex": "{彼|かれ}は{相変|あいか}わらず{忙|いそが}しい。", "exzh": "他還是一樣忙。", "note": "用在「跟以前一樣、沒變」，常帶一點無奈。"}, "相手": {"r": "あいて", "pos": "名詞", "zh": "對手", "lv": "N3", "ex": "{相手|あいて}は{強|つよ}いチームだ。", "exzh": "對手是很強的隊伍。"}, "砂糖": {"r": "さとう", "pos": "名詞", "zh": "砂糖", "lv": "N5", "ex": "コーヒーに{砂糖|さとう}を{入|い}れますか。", "exzh": "咖啡要加糖嗎？"}, "確かめる": {"r": "たしかめる", "pos": "動詞", "zh": "確認", "lv": "N3", "ex": "{自分|じぶん}の{目|め}で{確|たし}かめる。", "exzh": "用自己的眼睛確認。", "vt": "v1", "note": "和「確認する」意思接近，口語、帶親自去查證的語感。"}, "確認": {"r": "かくにん", "pos": "名詞・する動詞", "zh": "確認", "lv": "N3", "ex": "もう{一度|いちど}{確認|かくにん}します。", "exzh": "我再確認一次。"}, "社長": {"r": "しゃちょう", "pos": "名詞", "zh": "社長", "lv": "N4", "ex": "{社長|しゃちょう}は{今|いま}{会議中|かいぎちゅう}です。", "exzh": "社長現在正在開會。"}, "秘密": {"r": "ひみつ", "pos": "名詞", "zh": "秘密", "lv": "N3", "ex": "これは{二人|ふたり}だけの{秘密|ひみつ}だよ。", "exzh": "這是只屬於我們兩個人的秘密喔。"}, "空港": {"r": "くうこう", "pos": "名詞", "zh": "機場", "lv": "N4", "ex": "{空港|くうこう}まで{迎|むか}えに{行|い}きます。", "exzh": "我去機場接你。"}, "笑う": {"r": "わらう", "pos": "動詞", "zh": "笑", "lv": "N4", "ex": "{彼女|かのじょ}はよく{笑|わら}います。", "exzh": "她很常笑。", "vt": "v5"}, "箱": {"r": "はこ", "pos": "名詞", "zh": "盒子", "lv": "N5", "ex": "{箱|はこ}の{中|なか}に{何|なに}がありますか。", "exzh": "盒子裡有什麼？"}, "素直": {"r": "すなお", "pos": "な形容詞", "zh": "坦率", "lv": "N2", "ex": "もっと{素直|すなお}になりなよ。", "exzh": "你就坦率一點嘛。"}, "結局": {"r": "けっきょく", "pos": "副詞・名詞", "zh": "到頭來", "lv": "N3", "ex": "{結局|けっきょく}、{彼|かれ}は{来|こ}なかった。", "exzh": "結果他還是沒來。"}, "緊張": {"r": "きんちょう", "pos": "名詞・する動詞", "zh": "緊張", "lv": "N3", "ex": "{面接|めんせつ}で{緊張|きんちょう}した。", "exzh": "面試時很緊張。"}, "美味しい": {"r": "おいしい", "pos": "い形容詞", "zh": "好吃", "lv": "N5", "ex": "このパンは{美味|おい}しいです。", "exzh": "這個麵包很好吃。"}, "花嫁": {"r": "はなよめ", "pos": "名詞", "zh": "新娘", "lv": "N2", "ex": "{花嫁|はなよめ}はとても{綺麗|きれい}だった。", "exzh": "新娘非常漂亮。"}, "荷物": {"r": "にもつ", "pos": "名詞", "zh": "行李", "lv": "N4", "ex": "{荷物|にもつ}が{重|おも}いです。", "exzh": "行李很重。"}, "薬": {"r": "くすり", "pos": "名詞", "zh": "藥", "lv": "N5", "ex": "この{薬|くすり}を{飲|の}んでください。", "exzh": "請吃這個藥。"}, "記念日": {"r": "きねんび", "pos": "名詞", "zh": "紀念日", "lv": "N2", "ex": "{今日|きょう}は{結婚|けっこん}{記念日|きねんび}だ。", "exzh": "今天是結婚紀念日。"}, "記憶": {"r": "きおく", "pos": "名詞", "zh": "記憶", "lv": "N3", "ex": "その{日|ひ}の{記憶|きおく}がない。", "exzh": "我沒有那天的記憶。"}, "許す": {"r": "ゆるす", "pos": "動詞", "zh": "允許", "lv": "N4", "ex": "{父|ちち}は{留学|りゅうがく}を{許|ゆる}してくれました。", "exzh": "爸爸允許我去留學了。", "vt": "v5"}, "証明": {"r": "しょうめい", "pos": "名詞・する動詞", "zh": "證明", "lv": "N2", "ex": "{愛|あい}を{証明|しょうめい}してみせる。", "exzh": "我會證明我的愛給妳看。"}, "評価": {"r": "ひょうか", "pos": "名詞・する動詞", "zh": "欣賞", "lv": "N2", "ex": "{上司|じょうし}に{高|たか}く{評価|ひょうか}された。", "exzh": "受到上司高度評價。", "note": "基本意思是「評價」，「高く評価する」＝很欣賞、很肯定。"}, "誕生日": {"r": "たんじょうび", "pos": "名詞", "zh": "生日", "lv": "N5", "ex": "お{誕生日|たんじょうび}おめでとう。", "exzh": "生日快樂。"}, "誤解": {"r": "ごかい", "pos": "名詞・する動詞", "zh": "誤會", "lv": "N2", "ex": "{君|きみ}は{誤解|ごかい}している。", "exzh": "你誤會了。", "note": "指被別人理解錯；自己想錯用「勘違い」。"}, "諦める": {"r": "あきらめる", "pos": "動詞", "zh": "放棄", "lv": "N3", "ex": "{夢|ゆめ}を{諦|あきら}めないで。", "exzh": "不要放棄夢想。", "vt": "v1"}, "負ける": {"r": "まける", "pos": "動詞", "zh": "輸", "lv": "N3", "ex": "{試合|しあい}に{負|ま}けた。", "exzh": "比賽輸了。", "vt": "v1"}, "辞める": {"r": "やめる", "pos": "動詞", "zh": "辭職", "lv": "N4", "ex": "{来月|らいげつ}、{会社|かいしゃ}を{辞|や}めます。", "exzh": "我下個月要辭職。", "vt": "v1"}, "迎える": {"r": "むかえる", "pos": "動詞", "zh": "迎接", "lv": "N3", "ex": "{駅|えき}まで{迎|むか}えに{行|い}く。", "exzh": "我去車站接妳。", "vt": "v1"}, "返事": {"r": "へんじ", "pos": "名詞・する動詞", "zh": "回覆", "lv": "N4", "ex": "{早|はや}く{返事|へんじ}をください。", "exzh": "請盡快回覆我。"}, "迷惑": {"r": "めいわく", "pos": "名詞・な形容詞", "zh": "麻煩", "lv": "N3", "ex": "ご{迷惑|めいわく}をおかけしました。", "exzh": "給您添麻煩了。"}, "逃げる": {"r": "にげる", "pos": "動詞", "zh": "逃跑", "lv": "N3", "ex": "{犬|いぬ}が{家|いえ}から{逃|に}げた。", "exzh": "狗從家裡逃走了。", "vt": "v1"}, "通訳": {"r": "つうやく", "pos": "名詞・する動詞", "zh": "口譯員", "lv": "N2", "ex": "{会議|かいぎ}で{通訳|つうやく}をする。", "exzh": "在會議上擔任口譯。", "note": "口譯是「通訳」，筆譯是「翻訳」。"}, "遅刻": {"r": "ちこく", "pos": "名詞・する動詞", "zh": "遲到", "lv": "N4", "ex": "{明日|あした}は{遅刻|ちこく}しないでください。", "exzh": "明天請不要遲到。"}, "過去": {"r": "かこ", "pos": "名詞", "zh": "過去", "lv": "N2", "ex": "{過去|かこ}のことは{忘|わす}れよう。", "exzh": "過去的事就忘了吧。"}, "遠慮": {"r": "えんりょ", "pos": "名詞・する動詞", "zh": "客氣", "lv": "N3", "ex": "{遠慮|えんりょ}しないで{食|た}べてね。", "exzh": "別客氣，吃吧。"}, "部屋": {"r": "へや", "pos": "名詞", "zh": "房間", "lv": "N5", "ex": "{私|わたし}の{部屋|へや}は{狭|せま}いです。", "exzh": "我的房間很小。"}, "鍵": {"r": "かぎ", "pos": "名詞", "zh": "鑰匙", "lv": "N5", "ex": "{鍵|かぎ}をなくしました。", "exzh": "我把鑰匙弄丟了。"}, "隣": {"r": "となり", "pos": "名詞", "zh": "隔壁", "lv": "N5", "ex": "{隣|となり}の{部屋|へや}はうるさいです。", "exzh": "隔壁房間很吵。"}, "雪": {"r": "ゆき", "pos": "名詞", "zh": "雪", "lv": "N5", "ex": "{雪|ゆき}が{降|ふ}っています。", "exzh": "正在下雪。"}, "電車": {"r": "でんしゃ", "pos": "名詞", "zh": "電車", "lv": "N5", "ex": "{電車|でんしゃ}で{会社|かいしゃ}に{行|い}きます。", "exzh": "我搭電車去公司。"}, "静か": {"r": "しずか", "pos": "な形容詞", "zh": "安靜", "lv": "N5", "ex": "この{町|まち}は{静|しず}かです。", "exzh": "這個城鎮很安靜。"}, "頼る": {"r": "たよる", "pos": "動詞", "zh": "依靠", "lv": "N3", "ex": "いつでも{俺|おれ}を{頼|たよ}っていい。", "exzh": "妳隨時都可以依靠我。", "vt": "v5"}, "顔": {"r": "かお", "pos": "名詞", "zh": "臉", "lv": "N5", "ex": "{顔|かお}が{赤|あか}いですよ。", "exzh": "你的臉好紅喔。"}, "飛行機": {"r": "ひこうき", "pos": "名詞", "zh": "飛機", "lv": "N5", "ex": "{飛行機|ひこうき}で{北海道|ほっかいどう}へ{行|い}きます。", "exzh": "搭飛機去北海道。"}, "駅": {"r": "えき", "pos": "名詞", "zh": "車站", "lv": "N5", "ex": "{駅|えき}はどこですか。", "exzh": "車站在哪裡？"}, "驚く": {"r": "おどろく", "pos": "動詞", "zh": "驚訝", "lv": "N3", "ex": "その{話|はなし}を{聞|き}いて{驚|おどろ}いた。", "exzh": "聽到那件事我很驚訝。", "vt": "v5"}, "高い": {"r": "たかい", "pos": "い形容詞", "zh": "貴", "lv": "N5", "ex": "このケーキは{高|たか}いです。", "exzh": "這個蛋糕很貴。"}}, "stories": [{"id": "A1", "title": "社長的遲到懲罰", "band": "N5-N4", "text": "東京，早上九點零三分。\n\n許念抱著一疊文件衝進九條集團的{会社|かいしゃ}大廳，高跟鞋在大理石地板上敲得又急又亂。來日本{仕事|しごと}的第一天，她就{遅刻|ちこく}了。\n\n電梯門打開，裡面只站著一個男人。\n\n黑色西裝，銀色袖扣，眉眼冷得像剛下過雪。他抬起手腕看了一眼{時計|とけい}，聲音不高，卻讓整個電梯降了三度：「三分鐘。」\n\n「對、對不起！我是新來的翻譯，許念——」\n\n「妳的{名前|なまえ}我知道。」男人往前一步，她下意識後退，背脊撞上冰涼的電梯{壁|かべ}。他單手撐在她耳側，低頭看她，「我是九條司，這間{会社|かいしゃ}的{社長|しゃちょう}。在我這裡，[[〈遅刻:ちこく〉は〈許:ゆる〉さない。::遲到，我不允許。]]第一次{遅刻|ちこく}，要受罰。」\n\n許念嚥了口口水。員工私下都說，九條社長是全東京最{怖い|こわい}的男人，三年開除了十七個助理。\n\n「什、什麼懲罰？」\n\n「從今天起，妳調到頂樓，當我的專屬翻譯。」他鬆開手，替她按下最高樓層，「{毎日|まいにち}早上八點，我要在辦公室看到妳，和一杯不加糖的{コーヒー}。」\n\n---\n\n頂樓的{仕事|しごと}比她想像中難上許多。\n\n九條司開{会議|かいぎ}從不看稿，日文、英文、中文來回切換，她翻得滿頭大汗；他卻總能在她卡住的那一秒，用筆尖輕敲她的{机|つくえ}，低聲提示一個字。\n\n「為什麼幫我？」有一次她忍不住問。\n\n「因為妳出錯，丟的是我的臉。」他頭也不抬。\n\n可那天晚上下起大雨，她站在公司門口等計程車，一把黑色的{傘|かさ}忽然遮到她頭頂。九條司的西裝肩膀溼了一半，語氣依舊冷淡：「上車。」\n\n「不用了，社長，我自己叫車就——」\n\n「{だめ}。」他打開車門，「我不說第二次。」\n\n車裡很安靜。雨刷一下一下地擺動，她偷偷看他的{顔|かお}，發現這個男人不說話的時候，其實比傳聞{優しい|やさしい}一點點。\n\n只有一點點。\n\n---\n\n一個月後，許念在茶水間聽見同事的閒話。\n\n「聽說社長只是拿她當擋箭牌，下個月就要跟大阪的千金訂婚了。」\n\n她握著杯子的手指發白。原來那些深夜的熱湯、雨天的傘，全都只是演給別人看的戲。\n\n當晚，她把辭職信放在九條司的桌上，用剛學會的日文，一字一字地說：「{辞めます|やめます|辞める}。」\n\n九條司看著那封信，沉默了很久，久到她以為他會簽字。\n\n然後他站起來，繞過辦公桌，把她逼到落地窗前。玻璃外是整個東京的夜景，玻璃內是他越來越近的呼吸。\n\n「誰准妳走了？」\n\n「社長要訂婚了，不需要擋箭牌——」\n\n「訂婚？」他低笑一聲，眼神卻危險得嚇人，「那是我母親安排的，我上週就拒絕了。妳寧願相信茶水間的{嘘|うそ}，也不肯來問我一句？」\n\n「我……」\n\n「許念，妳以為妳為什麼會被調到頂樓？」他捏住她的下巴，逼她抬頭，「三年前在台北的書展，妳替一個迷路的日本人翻譯了一整個下午。那個人是我。」\n\n她愣住了。\n\n「我等了妳三年，等到妳自己走進我的{会社|かいしゃ}。」他的聲音壓得很低，「妳現在說要走，我不{許す|ゆるす}。」\n\n「你這是……強迫。」\n\n「對。」他毫不心虛，「所以，給我一個{返事|へんじ}。留下來，當我的女人——還是讓我吻到妳點頭為止？」\n\n許念的臉一下子紅透了。她還沒開口，他已經低頭吻了上來，霸道、強勢，卻在最後一秒放輕了力道，像怕把她弄碎。\n\n很久以後，他才抵著她的額頭，用日文說出那句話：\n\n「[[ずっと〈前:まえ〉から〈好:す〉きだった。::我很早以前就喜歡妳了。]]」\n\n窗外的雨停了。許念聽懂了——那是她來日本後學會的、最想聽見的一句話。", "blurb": "來東京上班第一天就遲到三分鐘，冷血社長把她壁咚在電梯裡：「第一次遲到，要受罰。」", "gram": {"pt": "〜ない（否定形）", "mean": "不～；表示否定", "how": "五段動詞：う段→あ段＋ない（許す→許さない）；一段動詞：去る＋ない（食べる→食べない）", "ex": "〈遅刻:ちこく〉は〈許:ゆる〉さない。", "exzh": "遲到，我不允許。"}}, {"id": "A2", "title": "社長住在我隔壁", "band": "N5-N4", "text": "搬到東京的第一晚，林小滿就被鄰居投訴了。\n\n她的新{部屋|へや}只有六坪，一張床、一張小桌子，還有一臺會嗡嗡叫的{冷蔵庫|れいぞうこ}。晚上十一點，她正跟著手機{歌う|うたう}，門鈴響了。\n\n門外站著一個男人。白襯衫，袖子捲到手肘，頭髮還滴著水，臉色比東京十一月的夜晚還冷。\n\n「{隣|となり}的。」他只說了三個字，接著用日文補上一句：「[[〈静:しず〉かにしてください。::請安靜一點。]]」\n\n「啊，對不起！」小滿慌張地鞠躬。男人看了她一眼，關上了門。\n\n---\n\n接下來一個禮拜，小滿每天都很小心，整層樓{静か|しずか}得可怕。一個人在東京，其實有點{寂しい|さびしい}。\n\n週五晚上，她發燒了。{熱|ねつ}來得又急又猛，{薬|くすり}剛好吃完，便利商店在八百公尺外，她連站都站不穩。\n\n她扶著牆走出門，下一秒，整個人撞進一個硬邦邦的懷裡。\n\n「妳要去哪裡？」是隔壁的男人。\n\n「買{薬|くすり}……」\n\n他摸了一下她的額頭，眉頭立刻皺起來：「這叫{大丈夫|だいじょうぶ}？」\n\n不等她回答，他直接把她抱回{部屋|へや}，放回床鋪：「躺好，不准動。要不要去看{医者|いしゃ}？」\n\n「不用……睡一覺就好。」\n\n二十分鐘後，他提著一袋藥和食材回來，在她那間小小的廚房裡煮了一鍋粥。{料理|りょうり}的香味飄滿整個房間。\n\n「你為什麼對我這麼好？」\n\n「妳太吵了。」他把湯匙塞進她手裡，「{病気|びょうき}的時候更吵。」\n\n可是那一夜，他一直坐在床邊，直到她睡著。隔天早上，桌上放著一份還溫熱的{朝ご飯|あさごはん}，和一張紙條：「不准再半夜出門。」\n\n---\n\n星期一，小滿第一次走進新公司的會議室，差點把手上的資料掉在地上。\n\n坐在主位上、被所有人稱為「鷹野社長」的男人，正是她的隔壁鄰居。\n\n散會後，他把她叫進辦公室，關上門。\n\n「社長，週末的事……謝謝您。」她低著頭，「我找到新房子了，下個月就{引っ越し|ひっこし}，不會再吵到您。您不用{心配|しんぱい}。」\n\n鷹野湊的眼神一下子沉了。他走過來，一手撐在她身後的門上，把她困在門和他之間。\n\n「{引っ越し|ひっこし}？」他重複這兩個字，聲音危險得讓人發抖，「誰准了？」\n\n「那是我的自由——」\n\n「那棟公寓是我的。」他低頭，近到她能看見他睫毛的影子，「妳以為，看得到東京鐵塔的房間，房租為什麼那麼便宜？」\n\n小滿愣住了。\n\n「半年前，妳在面試時說，想住在看得到東京鐵塔的地方。」他說，「我把頂樓那間空下來，等了妳半年。結果妳搬來第一天，就在我隔壁唱了三個小時的歌。」\n\n她的{顔|かお}紅得像要燒起來：「那、那你可以直接告訴我……」\n\n「告訴妳，妳會跑。」他捏起她的下巴，「就像現在這樣。」\n\n然後他吻了她。很輕，卻不容拒絕，像那晚他一口一口餵她喝粥一樣，溫柔得霸道。\n\n「[[もう〈逃:に〉がさない。::我不會再讓妳逃走了。]]」他抵著她的額頭，「妳房間的{鍵|かぎ}，我也有一把。以後不准半夜唱歌——除非，唱給我一個人聽。」", "blurb": "半夜唱歌被隔壁投訴，發燒時卻是他抱她回房煮粥。星期一，她發現鄰居就是自家社長。", "gram": {"pt": "〜てください", "mean": "請～（請求、指示）", "how": "動詞て形＋ください（する→して→してください）", "ex": "〈静:しず〉かにしてください。", "exzh": "請安靜一點。"}}, {"id": "A3", "title": "總裁的蛋糕考驗", "band": "N5-N4", "text": "京都，鴨川旁邊有一間小小的{喫茶店|きっさてん}。\n\n陳小柔在這裡打工三個月，最怕的不是洗碗，而是那個男人。\n\n他{毎朝|まいあさ}八點準時出現，永遠坐靠窗的同一個{席|せき}，點一杯黑咖啡和一塊店裡最{高い|たかい}的草莓蛋糕。然後吃一口，皺眉，放下叉子。\n\n「太{甘い|あまい}。」\n\n連續三十天，同一句話。\n\n第三十一天，小柔終於忍不住了。她把蛋糕重重放在他面前：「客人，嫌{甘い|あまい}的話，可以不要點。」\n\n男人抬起頭。西裝筆挺，眼神冷淡，薄唇勾起一點點弧度：「妳做的？」\n\n「……是。」\n\n「那我更要點。」他把整塊蛋糕推回她面前，「做到我說{美味しい|おいしい}為止。」\n\n---\n\n從那天起，小柔每天下班都留在店裡練習。少放一點{砂糖|さとう}，多加一點{牛乳|ぎゅうにゅう}，烤壞了就重來。手被烤盤燙得好{痛い|いたい}，她也不肯停。\n\n她不知道，{毎晩|まいばん}，那個男人都坐在對街的車裡，看著店裡那盞最晚熄的燈。\n\n第六十天，她端出一塊淡粉色的蛋糕。\n\n男人吃了一口，沉默很久。\n\n「怎麼樣？」她緊張得手心冒汗。\n\n他放下叉子，聲音很低：「{美味しい|おいしい}。」\n\n那一瞬間，小柔{嬉しい|うれしい}得差點跳起來，對他露出了一個大大的笑容。\n\n男人愣了一下，耳朵慢慢紅了。\n\n---\n\n可是隔天，一個年輕的大學生來店裡，跟小柔聊了好久的蛋糕，她也{笑う|わらう}得很開心。\n\n靠窗的{席|せき}上，那個男人的咖啡一口都沒喝。\n\n打烊的時候，店門被推開。男人走進來，把「本日包場」的牌子掛在門上，反手鎖門。\n\n「客人，我們打烊了——」\n\n「這間店，」他一步一步走過來，把她逼到吧檯後面，雙手撐在她身體兩側，「上個月我已經買下來了。今天起，妳只能做蛋糕給我一個人吃。」\n\n「你、你說什麼？」\n\n「妳對那個學生笑了十一次。」他低頭看她，眼神黑得嚇人，「[[〈君:きみ〉の〈笑顔:えがお〉は〈俺:おれ〉だけのものだ。::妳的笑容，只屬於我。]]」\n\n小柔的心跳快得不像話：「你憑什麼……」\n\n他從西裝口袋拿出一個小小的{箱|はこ}，放在吧檯上。裡面是一條項鍊，墜子是一塊小小的草莓蛋糕。\n\n「今天是妳的{誕生日|たんじょうび}。」他說，「三個月前，妳在店門口{泣く|なく}，說來京都的第一個生日，沒有人記得。」\n\n小柔的眼眶一下子紅了。原來他每天早上來，不是為了蛋糕。\n\n「所以，」他抬起她的下巴，語氣又霸道起來，「以後的每一個{誕生日|たんじょうび}，都由我來記。[[〈君:きみ〉が〈作:つく〉ったケーキが〈食:た〉べたい。::我想吃妳做的蛋糕。]]一輩子。」\n\n她紅著{顔|かお}，還沒想好怎麼回答，他已經低頭吻了下來。\n\n那個吻，帶著一點點草莓的香味。\n\n一點也不膩——是剛剛好的甜。", "blurb": "每天早上準時來嫌蛋糕太甜的男人，在她生日那天包下整間店：「妳的笑容只屬於我。」", "gram": {"pt": "〜たい", "mean": "想要～", "how": "動詞ます形去ます＋たい（食べます→食べたい）；想要的東西可用「が」", "ex": "〈君:きみ〉が〈作:つく〉ったケーキが〈食:た〉べたい。", "exzh": "我想吃妳做的蛋糕。"}}, {"id": "A4", "title": "總裁的北海道導遊", "band": "N5-N4", "text": "二月的北海道，{雪|ゆき}下得像不會停。\n\n周以寧在新千歲{空港|くうこう}舉著牌子，等她這次的客人。{飛行機|ひこうき}晚了一個小時，她要接的是——白石集團的總裁，白石嶺。旅行社的主管再三交代：「他很難搞，千萬不要惹他生氣。」\n\n一個穿黑色大衣的男人推著{荷物|にもつ}走出來，看了一眼她手上的牌子，又看了一眼她。\n\n「妳就是導遊？」\n\n「是的！白石先生，接下來五天的{予定|よてい}我都排好了——」\n\n「我不需要{予定|よてい}。」他把行李交給她，「我去哪裡，妳跟著就好。」\n\n---\n\n第一天，她攤開{地図|ちず}想介紹景點，他卻把她排好的行程全部跳過，只讓她{案内|あんない}一條沒有遊客的小路。\n\n第二天，他在小樽運河邊站了一個小時，什麼也不做，只叫她站在旁邊。\n\n「白石先生，這裡很{寒い|さむい}，我們要不要先進去？」\n\n他看了她凍紅的手一眼，把自己的{手袋|てぶくろ}脫下來，丟給她：「戴上。」\n\n「那你呢？」\n\n「我不冷。」\n\n明明他的手指也凍得發白。\n\n---\n\n第三天，暴風雪來了。\n\n往札幌的{電車|でんしゃ}全部停駛，{駅|えき}裡擠滿了人。以寧急得一直打電話，終於訂到附近一間小旅館——只剩一間房。\n\n「我睡大廳的沙發就好！」她說。\n\n「妳敢。」白石嶺接過{鍵|かぎ}，「這種天氣，女生一個人睡大廳太{危ない|あぶない}了。」\n\n那天晚上，他把床讓給她，自己靠在窗邊的椅子上。窗外是滿天的{星|ほし}，雪停了，世界安靜得只剩下兩個人的呼吸。\n\n「你為什麼要來北海道？」她忍不住問，「你明明不想看景點。」\n\n他沉默了很久，才從手機裡翻出一張{写真|しゃしん}。\n\n照片上是十年前的小樽運河。一個穿著高中制服的女孩，把自己的圍巾圍在一個坐在路邊、{疲れる|つかれる}到睡著的少年身上。\n\n「那天我離家出走，身上一毛錢都沒有。」他說，「醒來的時候，只有一條圍巾，和一張寫著『加油』的紙條。」\n\n以寧睜大了眼睛。那條圍巾，是她媽媽織的，她找了好久。\n\n「我找了妳十年。」白石嶺站起來，走到床邊，「上個月，終於在旅行社的網站上看到妳的照片。」\n\n「所以……你指定我當導遊？」\n\n「不然呢？」他低頭看她，眼神燙得驚人，「妳以為我是來看{雪|ゆき}的？」\n\n她往後縮，背卻碰到了冰冷的牆。他單手撐在她耳邊，把她圈在自己的影子裡。\n\n「白石先生，我們的合約只有五天……」\n\n「那就改。」他說，「[[〈俺:おれ〉から〈離:はな〉れないで。::不准離開我身邊。]]這不是請求，是命令。」\n\n她的心跳亂得一塌糊塗。\n\n他低頭吻住她，吻得很慢，像要把這十年的等待一次討回來。\n\n吻完，他握住她冰涼的手，十指緊扣。他的掌心很{暖かい|あたたかい}。「[[〈寒:さむ〉いなら、〈俺:おれ〉の〈手:て〉を〈握:にぎ〉っていろ。::冷的話，就握緊我的手。]]」\n\n窗外，北海道的雪又開始下了。這一次，她一點也不覺得{寒い|さむい}。", "blurb": "暴風雪困住北海道，只剩一間房。難搞的總裁客人說：「妳以為我是來看雪的？」", "gram": {"pt": "〜ないで", "mean": "不要～（請求對方別做）", "how": "動詞ない形＋で（離れる→離れない→離れないで）", "ex": "〈俺:おれ〉から〈離:はな〉れないで。", "exzh": "不准離開我身邊。"}}, {"id": "B1", "title": "總裁的逃婚新娘", "band": "N3-N2", "text": "京都，婚禮前一小時。\n\n沈若溪提著白紗裙擺，從飯店後門跑了出來。父親為了救公司，把她嫁給一個從沒見過面的日本財閥繼承人。關於那個男人，她只聽過一個{噂|うわさ}：冷血、無情，從不讓任何人違抗他的{命令|めいれい}。\n\n這是一場{契約|けいやく}婚姻。而她，不想再{我慢|がまん}了。\n\n後門停著一輛黑色轎車。她拉開車門就鑽進後座：「麻煩快開車，有人在追我！」\n\n這是她人生第一次{逃げる|にげる}。\n\n駕駛座上的男人沒動。後照鏡裡，一雙狹長的眼睛慢慢抬起來。\n\n「沈小姐，」他的中文帶著一點日本腔，低沉得好聽，「穿著婚紗上陌生人的車，妳對自己的安全，未免太不負責了。」\n\n「你怎麼知道我姓沈？」\n\n他沒回答，只是按下中控鎖。喀嚓一聲，在安靜的車廂裡格外清楚。\n\n「讓我下車！」她用力扳著門把，指尖都發白了。\n\n「{遠慮|えんりょ}什麼？」男人終於轉過頭。他的西裝領口別著一朵白玫瑰——和婚禮請帖上，新郎的胸花一模一樣，「別白費力氣了，{諦めろ|あきらめろ|諦める}。」\n\n沈若溪的心跳停了一拍。\n\n「一ノ瀬蓮。」他自我介紹得慢條斯理，「妳今天的新郎。」\n\n---\n\n她被帶回了飯店，卻沒有被押進禮堂。\n\n一ノ瀬蓮把她關進頂樓套房，扯下領帶扔在沙發上，像在談一筆生意：「我們重新{交渉|こうしょう}一次。」\n\n「我跟你沒什麼好談的。」\n\n「妳父親的公司欠了三十億，」他淡淡地說，「婚禮取消，明天銀行就會抽貸。這不是威脅，是現實。」\n\n沈若溪咬著唇，眼眶發紅。{悔しい|くやしい}——她恨這種被人捏在手心裡的感覺。\n\n「那你呢？你為什麼要娶一個連面都沒見過的女人？」\n\n他看著她，眼底閃過一絲她看不懂的情緒。「{条件|じょうけん}很簡單。」他伸出三根手指，「第一，婚後一年，妳住在我家。第二，不准對別的男人笑。第三——」\n\n「第三是什麼？」\n\n「等妳愛上我的那天，要親口告訴我。」\n\n她氣笑了：「你也太有自信了吧？開什麼{冗談|じょうだん}。」\n\n「我從不開{冗談|じょうだん}。[[〈逃:に〉がすわけにはいかない。::我不可能放妳走。]]」他俯身，把一枚{指輪|ゆびわ}套進她的無名指，尺寸剛剛好，「沈若溪，我是{本気|ほんき}的。」\n\n---\n\n婚後的日子，比她想像中奇怪。\n\n一ノ瀬蓮在外人面前冷得像一座冰山，回到家卻記得她不吃香菜、怕打雷。她夜裡被雷聲驚醒，總會發現他坐在床邊的椅子上，手裡拿著一份沒翻幾頁的文件。\n\n「你在這裡做什麼？」\n\n「這是我家。」他理直氣壯。\n\n「我不想給你添{迷惑|めいわく}……」\n\n「妳是我的{花嫁|はなよめ}，」他頭也不抬，「妳的事，從來不是麻煩。」\n\n她以為自己會一直討厭他。直到那天在酒會上，一位姓藤原的學長走過來，笑著和她聊了幾句。\n\n回家的車上，一ノ瀬蓮一句話都沒說。\n\n進門的瞬間，他把她按在玄關的牆上，聲音冷得像冰：「第二條{条件|じょうけん}，妳忘了？」\n\n「我只是跟學長打招呼——」\n\n「妳對他笑了三次。」他低頭逼近，鼻尖幾乎碰到她，「妳以為我真的不會吃醋？對我{素直|すなお}一點，說，妳心裡到底有沒有我。」\n\n「是又怎麼樣，不是又怎麼樣？」她嘴硬。\n\n「是，我就吻妳；不是，我就吻到妳承認為止。」\n\n她心跳亂成一團：「你為什麼……這麼執著？」\n\n他沉默片刻，終於從西裝內袋拿出一張泛黃的舊照片。照片上是十二歲的她，在台北的醫院走廊裡，替一個哭著找媽媽的日本男孩擦眼淚。\n\n「這是我藏了十年的{秘密|ひみつ}。」他的聲音第一次有了裂縫，「這門婚事，不是妳父親求來的。是我花了十年，才終於有資格去提親。」\n\n沈若溪的眼淚掉了下來。原來那些{偶然|ぐうぜん}——雷雨夜的守候、餐桌上消失的香菜、剛剛好的戒指尺寸——全都不是巧合。\n\n「所以，」他抬手擦掉她的眼淚，語氣又恢復了那股不講理的強勢，「第三條，妳什麼時候要履行？」\n\n她紅著臉瞪他：「你這個{意地悪|いじわる}！」\n\n「嗯，我是。」他毫不否認，低頭吻住她，吻得又深又慢，直到她揪著他的襯衫、忘了呼吸。\n\n「說。」他抵著她的唇，低聲命令。\n\n她終於投降：「……我愛上你了。」\n\n一ノ瀬蓮笑了，那是她第一次看見這座冰山真正地笑。\n\n「[[〈覚悟:かくご〉しろ。::做好覺悟吧。]]一ノ瀬太太。」他在她耳邊說，「這輩子，妳都別想再{逃げる|にげる}了。」", "blurb": "婚禮前一小時逃婚，卻鑽進了新郎的車。「別白費力氣了，妳今天的新郎是我。」", "gram": {"pt": "〜わけにはいかない", "mean": "（因為情理、立場）不能～", "how": "動詞辭書形＋わけにはいかない", "ex": "〈逃:に〉がすわけにはいかない。", "exzh": "我不可能放妳走。"}}, {"id": "B2", "title": "總裁的離婚協議書", "band": "N3-N2", "text": "結婚三週年的{記念日|きねんび}，蘇晚把一份{書類|しょるい}放在久我征司的辦公桌上。\n\n離婚協議書。她已經簽好了名字。\n\n三年前，為了救父親的工廠，她嫁給了這個東京最年輕的財閥總裁。說好是一場三年的契約婚姻，他給錢，她扮演一個安靜的妻子。\n\n三年來，他對她的{態度|たいど}{相変わらず|あいかわらず}冷淡。他晚歸、不解釋，她傳的訊息總是被他{無視|むし}。這個月，八卦雜誌更是登滿了他和女明星深夜出入飯店的照片。\n\n她已經{我慢|がまん}了三年，不想再當一個透明人了。\n\n久我征司低頭看著那份{書類|しょるい}，看了很久，久到辦公室的空氣都快凝固。\n\n然後，他把它撕成兩半。\n\n「你做什麼！」\n\n「[[〈離婚:りこん〉なんか、するものか。::離婚？我才不會答應。]]」他把碎紙丟進垃圾桶，語氣{冷静|れいせい}得可怕，「契約上寫的是三年，不是三年就結束。」\n\n「你這是{我儘|わがまま}！」\n\n「是。」他承認得毫不猶豫。\n\n---\n\n蘇晚搬回了娘家。\n\n第一天，他的車停在她家門口。第二天，她最愛的那家甜點店，把整間店的蛋糕都送到了她家。第三天，他親自來{迎える|むかえる}她，站在門外，從天亮站到天黑。\n\n她從窗簾縫裡看著他，心亂成一團。她不懂，一個從不{頼る|たよる}任何人、也從不讓任何人{頼る|たよる}的男人，為什麼要做到這種地步。\n\n「蘇小姐，」管家終於看不下去，「先生其實……」\n\n「我不想聽。」她打斷他，「我已經{決心|けっしん}要離開他了。」\n\n---\n\n第七天晚上，她收到一個地址。\n\n是她母親生前開的那間小食堂。五年前，因為欠債被拍賣，她以為這輩子再也回不去了。\n\n推開門，裡面的桌椅、牆上的菜單、媽媽最喜歡的那盞黃色吊燈，全都和記憶裡一模一樣。\n\n久我征司站在櫃檯後面。\n\n「這是……」\n\n「這三年，我花了很多時間，一間一間找回被賣掉的東西。」他說，「那個女明星是我表妹，她認識這間店現在的屋主，幫我談了半年。每天晚歸，是因為我在這裡，一塊一塊地把它修回原來的樣子。」\n\n蘇晚的眼淚掉了下來：「那你為什麼不說？」\n\n「說了，就不是驚喜了。」他走過來，「我本來想在今天的{記念日|きねんび}送給妳。結果妳送了我一份離婚協議書。」\n\n「是你不解釋，我才會{誤解|ごかい}……」\n\n「對，是我的錯。」他把她逼到牆邊，一手撐在她耳側，低頭看她，眼神卻一點也不像在認錯，「但是蘇晚，妳{勘違い|かんちがい}了一件事。」\n\n「什麼？」\n\n「那份契約，從第一天開始，就是我設計的。」他的聲音壓得很低，「工廠的債，是我讓人放出風聲，妳父親才會來找我。我等的，從來不是三年。」\n\n她瞪大了眼睛：「你、你這個騙子！」\n\n「嗯。」他毫不{反省|はんせい}，低頭吻住她，吻得又凶又深，像要把這七天的思念全部討回來。\n\n吻完，他抵著她的額頭，用日文說：「[[お〈前:まえ〉はどこにも〈行:い〉かせない。::我哪裡都不會讓妳去。]]」\n\n「如果我還是要走呢？」\n\n「那我就買下妳要去的每一個地方。」他說，「{結局|けっきょく}，妳還是會回到我身邊。」\n\n蘇晚哭著笑了。黃色的吊燈下，一切都和{記憶|きおく}裡一樣溫暖，只是多了一個不講理的男人。", "blurb": "契約婚姻三週年，她遞上離婚協議書。他撕成兩半：「離婚？我才不會答應。」", "gram": {"pt": "〜ものか", "mean": "才不～！（強烈否定，男性口氣）", "how": "動詞辭書形／な形容詞な＋ものか；女性口語多用「〜もんか」", "ex": "〈離婚:りこん〉なんか、するものか。", "exzh": "離婚？我才不會答應。"}}, {"id": "B3", "title": "總裁的勝負遊戲", "band": "N3-N2", "text": "江知夏是東京業界最難約的{通訳|つうやく}。\n\n一場跨國併購談判，她站在甲方老闆身邊，把對手公司的每一句話翻得精準又漂亮。對面坐著的，是霧島集團的總裁——霧島響。\n\n傳聞裡，他二十八歲就吞下三家公司，是業界最可怕的{相手|あいて}。\n\n談判進行到一半，霧島響忽然放下文件，不看她的老闆，只看她：「妳，開個價。」\n\n全場安靜。\n\n「霧島先生，請您專心談{取引|とりひき}。」知夏面不改色。\n\n「我很專心。」他靠回椅背，嘴角微微上揚，「我看上的{取引|とりひき}，是妳。年薪，是妳現在的三倍。」\n\n「我{断る|ことわる}。」\n\n---\n\n接下來一個月，霧島響挖了她三次，她{断る|ことわる}了三次。\n\n第四次，他直接出現在她的翻譯教室門口，穿著深灰色西裝，手裡拿著兩杯咖啡。\n\n「江小姐，來一場{勝負|しょうぶ}吧。」\n\n「我沒興趣。」\n\n「妳怕{負ける|まける}？」\n\n這三個字，精準地踩中了她的自尊心。這是明目張膽的{挑戦|ちょうせん}。知夏轉過身，抬起下巴：「比什麼？」\n\n「下週的國際論壇，妳替我翻譯。只要我挑出妳一個錯，妳就來當我的專屬口譯。」\n\n「如果你挑不出來呢？」\n\n「那我這輩子不再出現在妳面前。」\n\n這個男人太{生意気|なまいき}了。知夏冷笑：「成交。」\n\n---\n\n論壇那天，霧島響故意講得又快又難，夾雜大量{専門|せんもん}術語和冷門成語。知夏連喝水的時間都沒有，卻翻得{完璧|かんぺき}，一個字都沒有漏掉。\n\n散場時，台下響起{拍手|はくしゅ}。\n\n她走下台，得意地看著他：「霧島先生，你輸了。」\n\n他卻笑了：「妳最後一句，把『我願意』翻成了『我同意』。」\n\n「那句話根本……」她愣住了。最後一句，是他突然加上的。\n\n——「如果有一天，我向一個女人求婚，我希望她說：我願意。」\n\n她確實譯成了「我同意」。\n\n「妳的{実力|じつりょく}，我很{評価|ひょうか}。」霧島響慢慢走近，把她逼到講台後面的布幕旁，一手撐在她耳邊，「可是，[[〈負:ま〉けたからには、〈約束:やくそく〉は〈守:まも〉ってもらう。::既然輸了，就得遵守約定。]]」\n\n「你耍賴！這是陷阱！」\n\n「商場上，只看結果。」他低頭看她，眼神燙得驚人，「我從三年前第一次聽妳翻譯，就{狙う|ねらう}妳了。」\n\n知夏的臉一下子燒起來：「你到底想怎樣？」\n\n「我想要的，從來不是一個{通訳|つうやく}。」他的聲音壓得很低，「[[お〈前:まえ〉の〈本音:ほんね〉が〈聞:き〉きたい。::我想聽妳的真心話。]]妳真的那麼討厭我？」\n\n她咬著唇，{緊張|きんちょう}得答不出來。\n\n如果真的討厭，她為什麼每一次都{断る|ことわる}，卻每一次都忍不住等他出現？\n\n「不說話，就是不討厭。」他得寸進尺，低頭吻住她。這個吻帶著勝利者的強勢，也帶著一點小心翼翼，像在{確認|かくにん}她會不會推開。\n\n她沒有推開。\n\n很久以後，他才放開她，在她耳邊低聲說：「下次，記得翻對。」\n\n「哪一句？」\n\n「『我願意』。」他笑了，「我會讓妳說的。」", "blurb": "拒絕他三次的王牌口譯，答應了一場勝負。「既然輸了，就得遵守約定。」", "gram": {"pt": "〜からには", "mean": "既然～就（一定要）～", "how": "動詞普通形＋からには，後面接決心、義務或要求", "ex": "〈負:ま〉けたからには、〈約束:やくそく〉は〈守:まも〉ってもらう。", "exzh": "既然輸了，就得遵守約定。"}}, {"id": "B4", "title": "總裁的失憶妻子", "band": "N3-N2", "text": "葉初醒來的時候，第一眼看見的，是一個陌生的男人。\n\n他坐在病床邊，西裝皺了，下巴冒出青色的鬍渣，一雙眼睛紅得像三天沒睡。\n\n「妳醒了。」他的聲音沙啞得厲害。\n\n「請問……你是誰？」\n\n男人的身體僵住了。\n\n醫生說，一場小小的交通{事故|じこ}，讓她失去了最近三年的{記憶|きおく}。她只記得自己二十二歲，剛從台北來東京念研究所。\n\n而眼前這個男人，東條集團的總裁東條朔，說他是她的丈夫。\n\n「不可能。」葉初搖頭，「我怎麼可能嫁給一個{他人|たにん}？我們以前是{恋人|こいびと}嗎？」\n\n東條朔看著她，眼底有什麼東西碎掉了。\n\n---\n\n出院後，她被帶回一棟大得像美術館的房子。衣櫃裡掛著她的衣服，浴室裡擺著她慣用的洗髮精，客廳的牆上掛著兩個人的婚紗照。\n\n照片裡的她，笑得很幸福。\n\n洗髮精的味道有點{懐かしい|なつかしい}，可是她一點也想不起來，腦中一片空白。這種感覺讓她很{不安|ふあん}，好像住在別人的人生裡。\n\n「我想搬出去住一陣子。」第三天晚上，她鼓起勇氣說，「在{状況|じょうきょう}弄清楚以前……」\n\n東條朔放下手中的文件，抬起頭。\n\n「不行。」\n\n「這是我的自由！」\n\n他站起來，一步一步把她逼到牆邊。她的背貼上冰涼的牆，他的手撐在她耳側，把她困在他的氣息裡。\n\n「[[〈全部:ぜんぶ〉〈忘:わす〉れたとしても、お〈前:まえ〉は〈俺:おれ〉の〈妻:つま〉だ。::就算妳全都忘了，妳還是我的妻子。]]」他低頭看她，眼神霸道又痛苦，「妳要{確かめる|たしかめる}什麼，我都陪妳。但是，不准離開這個家。」\n\n---\n\n那天晚上，她在書房的抽屜裡，找到一本日記。\n\n是她自己的字。\n\n「今天，東條朔又冷著一張臉來圖書館。他說只是路過，可是他已經『路過』了四十七次。」\n\n「他向我{告白|こくはく}了。用一種很不講理的方式：『我不接受拒絕。』」\n\n「我好像，真的愛上這個霸道的男人了。」\n\n一頁一頁翻下去，{思い出|おもいで}像潮水一樣湧回來。最後一頁，日期是車禍的前一天：\n\n「明天要告訴他一個{秘密|ひみつ}。他一定會很{驚く|おどろく}。」\n\n葉初的手開始發抖。\n\n---\n\n書房的門被推開，東條朔站在門口，看見她手上的日記，整個人僵住了。\n\n「妳……想起來了？」\n\n她看著他，眼淚一顆一顆掉下來：「東條朔，你這個笨蛋。我忘了你，你為什麼不直接把日記給我看？」\n\n「因為我想{証明|しょうめい}一件事。」他走過來，聲音啞得不像話，「就算沒有{過去|かこ}，妳也會再一次愛上我。」\n\n「如果我沒有呢？」\n\n「那我就再追妳四十七次。」他抬起她的下巴，「[[もう〈一度:いちど〉、〈俺:おれ〉を〈好:す〉きになれ。::再愛上我一次。]]這是命令。」\n\n她破涕為笑，踮起腳尖，先吻了他。\n\n東條朔只愣了一秒，就反客為主，{抱きしめた|だきしめた|抱きしめる}她，吻得又深又重，像要把這幾天的恐懼全部吞下去。\n\n「對了，」她靠在他胸口，小聲說，「日記裡的{秘密|ひみつ}，你想知道嗎？」\n\n「說。」\n\n「我想跟你，再辦一次婚禮。」她紅著臉，「這次，我要{正直|しょうじき}地告訴所有人——是我先愛上你的。」\n\n東條朔笑了。那是她醒來以後，第一次看見他笑。", "blurb": "車禍醒來忘了三年，陌生的總裁說是她丈夫：「就算妳全都忘了，妳還是我的妻子。」", "gram": {"pt": "〜としても", "mean": "就算～也～（假設讓步）", "how": "普通形＋としても", "ex": "〈全部:ぜんぶ〉〈忘:わす〉れたとしても、お〈前:まえ〉は〈俺:おれ〉の〈妻:つま〉だ。", "exzh": "就算妳全都忘了，妳還是我的妻子。"}}]};
+const D = DATA.dict, S = DATA.stories;
+const LV = {'N5-N4':['N5–N4','入門・日常生活單字'],'N3-N2':['N3–N2','進階・職場與感情']};
+const TOK = /\{([^{}|]+)(?:\|([^{}|]+))?(?:\|([^{}|]+))?\}/g;
+const JA = /\[\[(.+?)::(.+?)\]\]/g;
+const RB = /〈([^:〉]+):([^〉]+)〉/g;
+const $ = s=>document.querySelector(s);
+const esc = s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ---------- 儲存 ---------- */
+const KEY='jpBoss1';
+const def={lv:'N5-N4',mode:'kj',gl:true,book:[],done:{},quiz:{},heard:{},gram:{},days:[]};
+let P; try{P=Object.assign({},def,JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){P={...def}}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(P))}catch(e){}};
+const st={view:'home',sid:null,filter:'all'};
+const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+function checkin(){const t=today(); if(!P.days.includes(t)) P.days.push(t); save()}
+function streak(){let n=0,d=new Date(); const has=x=>P.days.includes(x.toISOString().slice(0,10));
+  const f=x=>{const y=new Date(x.getTime()-x.getTimezoneOffset()*6e4);return has(y)};
+  if(!f(d)) d.setDate(d.getDate()-1); while(f(d)){n++; d.setDate(d.getDate()-1)} return n}
+
+/* ---------- 文字呈現 ---------- */
+const disp=k=>D[k].w||k;
+const kanaLine=t=>t.replace(RB,(m,a,r)=>r);
+const rubyLine=t=>P.mode==='kana'? esc(kanaLine(t)) : esc(t).replace(RB,(m,a,r)=>`<ruby>${a}<rt>${r}</rt></ruby>`);
+const rubyEx=t=>P.mode==='kana'? esc(t.replace(TOK,(m,a,r)=>r||a)) : esc(t).replace(TOK,(m,a,r)=>r?`<ruby>${a}<rt>${r}</rt></ruby>`:a);
+const speakEx=t=>t.replace(TOK,(m,a,r)=>r||a);
+function wordHTML(s,r,k){
+  const e=D[k]; const g = e.zh===s||e.zh===k ? '' : `<span class="g">（${e.zh}）</span>`;
+  const inner = !r ? s : P.mode==='kana' ? r : `<ruby>${s}<rt>${r}</rt></ruby>`;
+  return `<span class="w${P.book.includes(k)?' saved-w':''}" tabindex="0" role="button" data-k="${k}" data-s="${esc(s)}">${inner}</span>${g}`;
+}
+function renderBody(txt){
+  return txt.split(/\n\s*\n/).map((p,i)=>{
+    if(p.trim()==='---') return '<hr>';
+    let h=''; let last=0; const re=/\[\[(.+?)::(.+?)\]\]|\{([^{}|]+)(?:\|([^{}|]+))?(?:\|([^{}|]+))?\}/g; let m;
+    while((m=re.exec(p))){ h+=esc(p.slice(last,m.index)); last=re.lastIndex;
+      if(m[1]) h+=`<span class="jl" role="button" tabindex="0" data-say="${esc(kanaLine(m[1]))}">${rubyLine(m[1])}</span><span class="jlz">（${esc(m[2])}）</span>`;
+      else h+=wordHTML(m[3],m[4],m[5]||m[3]); }
+    h+=esc(p.slice(last));
+    return `<p data-p="${i}">${h}</p>`;
+  }).join('');
+}
+function wordsOf(s){const o=[];for(const m of s.text.matchAll(TOK)){const k=m[3]||m[1]; if(!o.includes(k)) o.push(k)} return o}
+function linesOf(s){return [...s.text.matchAll(JA)].map(m=>({ja:m[1],zh:m[2]}))}
+const lvStories=lv=>S.filter(s=>s.band===lv);
+
+/* ---------- 動詞變化 ---------- */
+const A={'う':'わ','く':'か','ぐ':'が','す':'さ','つ':'た','ぬ':'な','ぶ':'ば','む':'ま','る':'ら'};
+const I={'う':'い','く':'き','ぐ':'ぎ','す':'し','つ':'ち','ぬ':'に','ぶ':'び','む':'み','る':'り'};
+const TE={'う':'って','つ':'って','る':'って','む':'んで','ぶ':'んで','ぬ':'んで','く':'いて','ぐ':'いで','す':'して'};
+function conj(w,vt){const st=w.slice(0,-1),u=w.slice(-1);
+  if(vt==='v1') return {'ます形':st+'ます','て形':st+'て','ない形':st+'ない','た形':st+'た'};
+  const te=(w==='行く')?st+'って':st+TE[u];
+  return {'ます形':st+I[u]+'ます','て形':te,'ない形':st+A[u]+'ない','た形':te.replace(/て$/,'た').replace(/で$/,'だ')};}
+
+/* ---------- 語音 ---------- */
+let VO=[];
+function loadV(){try{VO=speechSynthesis.getVoices()}catch(e){VO=[]}}
+loadV(); try{speechSynthesis.onvoiceschanged=loadV}catch(e){}
+const rank=v=>(/natural|online|google|neural|premium|enhanced/i.test(v.name)?0:1)+(/kyoko|nanami|haruka|otoya|mizuki|ayumi/i.test(v.name)?-0.5:0);
+function voiceFor(lang){loadV(); const L=VO.filter(v=>v.lang.replace('_','-').toLowerCase().startsWith(lang)); return L.sort((a,b)=>rank(a)-rank(b))[0]||null}
+function jaVoice(){return voiceFor('ja')}
+function zhVoice(){return voiceFor('zh-tw')||voiceFor('zh-hk')||voiceFor('zh')}
+function utt(text,lang,rate){const u=new SpeechSynthesisUtterance(text); u.rate=rate||.9;
+  if(lang==='ja'){u.lang='ja-JP'; const v=jaVoice(); if(v) u.voice=v} else {u.lang='zh-TW'; const v=zhVoice(); if(v) u.voice=v}
+  return u}
+function noJa(){ if(jaVoice()) return false; showTip(); return true }
+function sayJa(t){ try{ stopRead(); speechSynthesis.cancel(); if(noJa()) return; speechSynthesis.speak(utt(t,'ja',.85)) }catch(e){} }
+
+/* 全文朗讀：中文用中文語音、日文用日文語音（讀假名，確保讀音正確） */
+let RD=null;
+function segs(s){const out=[]; s.text.split(/\n\s*\n/).forEach((p,i)=>{ if(p.trim()==='---') return;
+  const re=/\[\[(.+?)::(.+?)\]\]|\{([^{}|]+)(?:\|([^{}|]+))?(?:\|([^{}|]+))?\}/g; let m,last=0;
+  const push=(t,l)=>{t=t.replace(/[「」『』——…]/g,' ').trim(); if(t) out.push({t,l,p:i})};
+  while((m=re.exec(p))){ push(p.slice(last,m.index),'zh'); last=re.lastIndex;
+    if(m[1]) push(kanaLine(m[1]),'ja'); else push(m[4]||m[3],'ja'); }
+  push(p.slice(last),'zh'); }); return out}
+function startRead(){ if(noJa()) return; const s=S.find(x=>x.id===st.sid); stopRead();
+  RD={q:segs(s),i:0,on:true}; P.heard[s.id]=1; save(); next(); player()}
+function next(){ if(!RD||!RD.on) return; if(RD.i>=RD.q.length){stopRead(); render(); return}
+  const g=RD.q[RD.i]; document.querySelectorAll('.story p').forEach(p=>p.classList.toggle('reading',+p.dataset.p===g.p));
+  const u=utt(g.t,g.l,g.l==='ja'?.85:1.05); u.onend=()=>{if(RD&&RD.on){RD.i++; next()}}; u.onerror=u.onend;
+  try{speechSynthesis.speak(u)}catch(e){} }
+function stopRead(){ if(RD){RD.on=false; RD=null} try{speechSynthesis.cancel()}catch(e){}
+  document.querySelectorAll('.story p.reading').forEach(p=>p.classList.remove('reading')); player()}
+function player(){ $('#playerRoot').innerHTML = RD? `<div class="player"><div>🔊 朗讀中…<button id="stopR">停止</button></div></div>`:'' }
+
+/* ---------- 頁面 ---------- */
+function modeBox(){
+  return `<div class="modebox"><div class="lab"><span>日文單字顯示</span><span>中文釋義</span></div>
+  <div class="row" style="display:flex;gap:8px;flex-wrap:wrap">
+   <div class="seg" style="flex:2;min-width:220px"><button data-mode="kj" aria-pressed="${P.mode==='kj'}">漢字＋假名</button><button data-mode="kana" aria-pressed="${P.mode==='kana'}">只有假名</button></div>
+   <div class="seg" style="flex:1;min-width:110px"><button data-gl="1" aria-pressed="${P.gl}">顯示</button><button data-gl="0" aria-pressed="${!P.gl}">隱藏</button></div></div>
+  <div class="demo ${P.gl?'':'hide-g'}">例：他給我一個${wordHTML('返事','へんじ','返事')}。</div></div>`}
+function nextStory(lv){return lvStories(lv).find(s=>!P.done[s.id])}
+function home(){
+  const ns=nextStory(P.lv); const read=Object.keys(P.done).length;
+  $('#app').innerHTML=`
+  <header class="hero">
+    <span class="eyebrow">JLPT 單字 ・ 日文版</span>
+    <h1>霸總教你背<ruby>日本語<rt>にほんご</rt></ruby></h1>
+    <span class="tag">一天一篇狗血霸總小說，順便記住日檢單字、句型和霸總名台詞。</span>
+  </header>
+  <div class="sec"><h3>選擇等級</h3><div class="levels">${Object.entries(LV).map(([v,[b,t]])=>`<button class="lv" data-lv="${v}" aria-pressed="${P.lv===v}"><b>${b}</b><span>${t}</span></button>`).join('')}</div></div>
+  <div class="today">${ns?`<small>今日課表 ・ DAY ${lvStories(P.lv).indexOf(ns)+1}</small><h2>${esc(ns.title)}</h2><p>${esc(ns.blurb)}</p><button class="go" data-sid="${ns.id}">開始今天的課 ›</button>`
+     :`<small>今日課表</small><h2>這個等級全部讀完了！</h2><p>新故事審核通過後會陸續上架，先去生字本複習吧。</p><button class="go" data-tab="book">複習生字本 ›</button>`}</div>
+  <div class="sec"><div class="stats">
+    <div class="stat"><b>${read}</b><span>已讀篇數</span></div>
+    <div class="stat"><b>${P.book.length}</b><span>生字本</span></div>
+    <div class="stat"><b>${streak()}</b><span>連續天數</span></div></div></div>
+  <div class="sec"><h3>顯示設定</h3>${modeBox()}</div>
+  <div class="sec"><h3>每一課這樣學</h3><ol class="how">
+    <li>讀故事：點藍字看讀音、詞性、動詞變化，按 🔊 聽日文發音</li>
+    <li>聽朗讀：中文旁白配日文發音，霸總台詞也會唸出來</li>
+    <li>學句型：一課一個文法，用霸總台詞記住它</li>
+    <li>小測驗：答對 3 題就完成今天的課，自動打卡</li></ol></div>
+  <p class="foot">預覽版・共 ${S.length} 篇原創故事・每篇皆通過自動審核校對</p>`;
+}
+function tasksOf(s){return [['讀',P.done[s.id]||P.quiz[s.id]],['聽',P.heard[s.id]],['句型',P.gram[s.id]],['測驗',P.quiz[s.id]]]}
+function plan(){
+  const L=lvStories(P.lv); const ns=nextStory(P.lv);
+  const d=new Date(), y=d.getFullYear(), mo=d.getMonth(), first=new Date(y,mo,1).getDay(), n=new Date(y,mo+1,0).getDate();
+  let cells='日一二三四五六'.split('').map(x=>`<div class="wd">${x}</div>`).join('')+'<div></div>'.repeat(first);
+  for(let i=1;i<=n;i++){const k=`${y}-${String(mo+1).padStart(2,'0')}-${String(i).padStart(2,'0')}`; cells+=`<div class="d${P.days.includes(k)?' on':''}${i===d.getDate()?' td':''}">${i}</div>`}
+  $('#app').innerHTML=`<header class="hero"><span class="eyebrow">課表</span><h1>一天一課</h1><span class="tag">照順序每天讀一篇，完成小測驗就會自動打卡。</span></header>
+  <div class="levels">${Object.entries(LV).map(([v,[b,t]])=>`<button class="lv" data-lv="${v}" aria-pressed="${P.lv===v}"><b>${b}</b><span>${L.length&&v===P.lv?`${L.filter(s=>P.done[s.id]).length}/${L.length} 完成`:t}</span></button>`).join('')}</div>
+  <div class="sec">${L.map((s,i)=>`<button class="day${P.done[s.id]?' done':''}${ns===s?' cur':''}" data-sid="${s.id}">
+     <span class="n">DAY<br>${i+1}</span><span><h4>${esc(s.title)}</h4><span class="tasks">${tasksOf(s).map(([t,ok])=>`<i class="${ok?'y':''}">${ok?'✓':'○'} ${t}</i>`).join('')}</span></span>
+     <span class="pill ${P.done[s.id]?'ok':ns===s?'ac':''}">${P.done[s.id]?'完成':ns===s?'今天':'待讀'}</span></button>`).join('')}</div>
+  <div class="sec"><h3>${mo+1} 月打卡 ・ 連續 ${streak()} 天</h3><div class="cal"><div class="grid7">${cells}</div></div></div>`;
+}
+function stories(){
+  const f=st.filter; const L=S.filter(s=>f==='all'||s.band===f);
+  $('#app').innerHTML=`<header class="hero"><span class="eyebrow">故事</span><h1>全部故事</h1></header>
+  <div class="seg" style="margin-bottom:14px"><button data-filter="all" aria-pressed="${f==='all'}">全部</button>${Object.entries(LV).map(([v,[b]])=>`<button data-filter="${v}" aria-pressed="${f===v}">${b}</button>`).join('')}</div>
+  <div class="list">${L.map(s=>`<button class="card" data-sid="${s.id}"><h3>${esc(s.title)}</h3><p>${esc(s.blurb)}</p>
+    <div class="meta"><span class="pill">${LV[s.band][0]}</span><span class="pill">${wordsOf(s).length} 個單字</span><span class="pill">句型 ${esc(s.gram.pt)}</span>${P.done[s.id]?'<span class="pill ok">✓ 已讀</span>':''}</div></button>`).join('')}</div>`;
+}
+function reader(){
+  const s=S.find(x=>x.id===st.sid); const ws=wordsOf(s), ls=linesOf(s);
+  $('#app').innerHTML=`
+  <div class="bar"><div class="row"><button class="back" id="back">‹ 返回</button><span class="sp"></span>
+    <button class="tg" id="readAll">🔊 朗讀全文</button></div>
+    <div class="row"><div class="seg" style="flex:2"><button data-mode="kj" aria-pressed="${P.mode==='kj'}">漢字＋假名</button><button data-mode="kana" aria-pressed="${P.mode==='kana'}">只有假名</button></div>
+    <button class="tg" data-gltog aria-pressed="${P.gl}">中文</button></div></div>
+  <article class="story ${P.gl?'':'hide-g'}">
+    <h2>${esc(s.title)}</h2>
+    <div class="sub">${LV[s.band][0]} ・ ${ws.length} 個單字 ・ 點藍字查詢、點灰底台詞聽發音</div>
+    ${renderBody(s.text)}
+  </article>
+  <section class="box"><h4>霸總名台詞 <span class="pill">${ls.length} 句</span></h4>
+    ${ls.map(l=>`<div class="line"><div><div class="ja">${rubyLine(l.ja)}</div><div class="zh">${esc(l.zh)}</div></div><button class="say" data-say="${esc(kanaLine(l.ja))}" aria-label="朗讀">🔊</button></div>`).join('')}</section>
+  <section class="box gram"><h4>今日句型</h4>
+    <div class="pt">${esc(s.gram.pt)}</div><div><b>${esc(s.gram.mean)}</b></div><div class="how">接續：${esc(s.gram.how)}</div>
+    <div class="line"><div><div class="ja">${rubyLine(s.gram.ex)}</div><div class="zh">${esc(s.gram.exzh)}</div></div><button class="say" data-say="${esc(kanaLine(s.gram.ex))}" data-g="1" aria-label="朗讀">🔊</button></div>
+    <button class="btn ghost" id="gramOk">${P.gram[s.id]?'✓ 已學會這個句型':'我學會了'}</button></section>
+  <section class="box"><h4>本篇單字 <span class="pill">${ws.length}</span></h4>
+    <div class="vlist">${ws.map(vrow).join('')}</div>
+    <div class="btns"><button class="btn" id="addAll">全部加入生字本</button><button class="btn ghost" id="sayAll">🔊 連續朗讀單字</button></div></section>
+  <section class="box" id="quiz"></section>`;
+  quiz(s); window.scrollTo(0,0);
+}
+function vrow(k){const e=D[k]; return `<button class="vrow" data-k="${k}"><span class="jp">${P.mode==='kana'?e.r:disp(k)}<small>${P.mode==='kana'?disp(k):e.r}</small></span><span>${e.zh}</span><span class="lvp">${e.lv}${P.book.includes(k)?' ★':''}</span></button>`}
+function shuffle(a){a=[...a]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]} return a}
+let QZ=null;
+function quiz(s){
+  if(!QZ||QZ.sid!==s.id){const ws=shuffle(wordsOf(s)).slice(0,3); QZ={sid:s.id,qs:ws.map(k=>({k,opts:shuffle([k,...shuffle(wordsOf(s).filter(x=>x!==k&&D[x].zh!==D[k].zh)).slice(0,3)])})),i:0,ok:0,ans:null}}
+  const box=$('#quiz'); if(!box) return;
+  if(QZ.i>=QZ.qs.length){ box.innerHTML=`<h4>小測驗 <span class="pill ok">${QZ.ok}/3</span></h4>
+     <p style="margin:0">${QZ.ok===3?'全對！今天的課完成了，已幫你打卡。霸總很滿意。':'差一點！錯的字已加入生字本，再挑戰一次吧。'}</p>
+     <div class="btns"><button class="btn ghost" id="qAgain">再測一次</button><button class="btn" data-tab="plan">看課表</button></div>`; return }
+  const q=QZ.qs[QZ.i], e=D[q.k];
+  box.innerHTML=`<h4>小測驗 <span class="pill">${QZ.i+1}/3</span></h4><div class="q">
+    <div>這個字是什麼意思？</div><div class="qw">${P.mode==='kana'?e.r:`<ruby>${disp(q.k)}<rt>${e.r}</rt></ruby>`}</div>
+    <div class="opts">${q.opts.map(o=>`<button class="opt${QZ.ans?(o===q.k?' right':o===QZ.ans?' wrong':''):''}" data-opt="${o}">${D[o].zh}</button>`).join('')}</div></div>`;
+}
+function bookView(){
+  $('#app').innerHTML=`<header class="hero"><span class="eyebrow">生字本</span><h1>我的生字本</h1><span class="tag">在故事裡點單字就能收藏；小測驗答錯的字也會自動加入。</span></header>
+  ${P.book.length?`<section class="box"><div class="vlist">${P.book.filter(k=>D[k]).map(vrow).join('')}</div><button class="btn ghost" id="sayBook">🔊 連續朗讀生字本</button></section>`:'<div class="empty">還沒有收藏的單字。<br>打開一篇故事，點藍色單字就能加入。</div>'}`;
+}
+function render(){
+  document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected', t.dataset.tab===(st.view==='reader'?'stories':st.view)));
+  ({home,plan,stories,reader,book:bookView})[st.view]();
+}
+function sayWords(list){ if(noJa()) return; stopRead(); try{speechSynthesis.cancel(); list.forEach(k=>{speechSynthesis.speak(utt(D[k].r,'ja',.85)); const z=utt(D[k].zh,'zh',1.05); speechSynthesis.speak(z)})}catch(e){} }
+
+/* ---------- 視窗 ---------- */
+function sheet(k,surf){
+  const e=D[k]; const saved=P.book.includes(k);
+  const base = surf && surf!==k && surf!==disp(k) ? `<div class="tag">文中形：${esc(surf)} → 原形：${disp(k)}</div>`:'';
+  const cj = e.vt? `<table class="conj">${Object.entries(conj(disp(k),e.vt)).map(([a,b])=>`<tr><td>${a}</td><td>${b}</td></tr>`).join('')}</table>`:'';
+  openSheet(`<div class="sh-top"><div><div class="sh-word">${P.mode==='kana'?e.r:disp(k)}</div><div class="sh-read">${P.mode==='kana'?disp(k):e.r}</div></div><button class="x" data-close aria-label="關閉">×</button></div>
+    ${base}<div class="meta"><span class="pill">${e.pos}</span><span class="pill">JLPT ${e.lv}</span>${e.vt?`<span class="pill">${e.vt==='v1'?'一段動詞':'五段動詞'}</span>`:''}</div>
+    <div class="sh-zh">${e.zh}</div>${e.note?`<div class="note">💡 ${esc(e.note)}</div>`:''}${cj}
+    <div class="sh-ex"><div class="ja">${rubyEx(e.ex)}</div><div class="zh">${e.exzh}</div></div>
+    <div class="btns"><button class="btn ghost" data-say="${e.r}">🔊 單字</button><button class="btn ghost" data-say="${esc(speakEx(e.ex))}">🔊 例句</button>
+    <button class="btn" data-save="${k}">${saved?'✓ 已在生字本':'☆ 加入生字本'}</button></div>`);
+}
+function openSheet(h){$('#sheetRoot').innerHTML=`<div class="scrim" data-close></div><div class="sheet" role="dialog">${h}</div>`}
+const closeSheet=()=>$('#sheetRoot').innerHTML='';
+function showTip(){
+  const ua=navigator.userAgent; const ios=/iPhone|iPad/.test(ua), and=/Android/.test(ua), mac=/Macintosh/.test(ua)&&!ios;
+  const steps= ios? ['打開「設定」→「輔助使用」→「朗讀內容」','點「聲音」→ 選「日文」','下載一個日文語音（例如 Kyoko），回到這裡重新整理']
+   : and? ['打開「設定」→ 搜尋「文字轉語音」','偏好的引擎選「Google 語音服務」','點齒輪 →「安裝語音資料」→ 下載「日文」，再重新整理這頁']
+   : mac? ['打開「系統設定」→「輔助使用」→「朗讀內容」','「系統聲音」→「管理聲音」→ 勾選日文（例如 Kyoko）','下載完成後，重新整理這頁']
+   : ['打開 Windows「設定」→「時間與語言」→「語音」','「新增語音」→ 搜尋「日本語」並安裝','安裝完成後，關掉瀏覽器重新開啟（建議用 Edge，內建自然日文語音）'];
+  openSheet(`<div class="sh-top"><div class="sh-zh">這台裝置沒有日文語音</div><button class="x" data-close aria-label="關閉">×</button></div>
+   <div class="tip"><p style="margin:0 0 8px;color:var(--mute);font-size:14px">沒有日文語音時，瀏覽器會用中文語音硬唸，聽起來就不是日文。照下面裝好日文語音就正常了：</p><ol>${steps.map(s=>`<li>${s}</li>`).join('')}</ol></div>
+   <button class="btn" data-close>知道了</button>`);
+}
+
+/* ---------- 事件 ---------- */
+document.addEventListener('click',ev=>{
+  const t=ev.target.closest('button,[data-k],[data-say],[data-close]'); if(!t) return;
+  const d=t.dataset;
+  if(d.close!==undefined){closeSheet(); return}
+  if(d.say){ sayJa(d.say); if(d.g&&!P.gram[st.sid]){} return }
+  if(d.save){const k=d.save; P.book=P.book.includes(k)?P.book.filter(x=>x!==k):[...P.book,k]; save(); closeSheet(); render(); return}
+  if(d.k){sheet(d.k,d.s); return}
+  if(d.tab){stopRead(); st.view=d.tab; QZ=null; render(); window.scrollTo(0,0); return}
+  if(d.lv){P.lv=d.lv; save(); render(); return}
+  if(d.mode){P.mode=d.mode; save(); render(); return}
+  if(d.gl){P.gl=d.gl==='1'; save(); render(); return}
+  if(d.gltog!==undefined){P.gl=!P.gl; save(); render(); return}
+  if(d.filter){st.filter=d.filter; render(); return}
+  if(d.sid){st.sid=d.sid; st.view='reader'; QZ=null; render(); return}
+  if(d.opt){ if(QZ.ans) return; const q=QZ.qs[QZ.i]; QZ.ans=d.opt; const ok=d.opt===q.k; if(ok) QZ.ok++; else if(!P.book.includes(q.k)){P.book.push(q.k); save()}
+     quiz(S.find(x=>x.id===st.sid)); setTimeout(()=>{QZ.i++; QZ.ans=null;
+       if(QZ.i>=QZ.qs.length && QZ.ok===3){P.quiz[st.sid]=1; P.done[st.sid]=today(); checkin()}
+       quiz(S.find(x=>x.id===st.sid))},900); return }
+  switch(t.id){
+    case 'back': stopRead(); st.view='home'; render(); break;
+    case 'readAll': RD? stopRead() : startRead(); break;
+    case 'stopR': stopRead(); break;
+    case 'gramOk': P.gram[st.sid]=1; save(); t.textContent='✓ 已學會這個句型'; break;
+    case 'addAll': {const s=S.find(x=>x.id===st.sid); wordsOf(s).forEach(k=>{if(!P.book.includes(k)) P.book.push(k)}); save(); render(); break}
+    case 'sayAll': sayWords(wordsOf(S.find(x=>x.id===st.sid))); break;
+    case 'sayBook': sayWords(P.book.filter(k=>D[k])); break;
+    case 'qAgain': QZ=null; quiz(S.find(x=>x.id===st.sid)); break;
+  }
+});
+document.addEventListener('keydown',ev=>{
+  if(ev.key==='Escape') closeSheet();
+  if(ev.key==='Enter'&&ev.target.dataset){ if(ev.target.dataset.k) sheet(ev.target.dataset.k,ev.target.dataset.s); else if(ev.target.dataset.say) sayJa(ev.target.dataset.say) }
+});
+render();
+</script>
+
+</body>
+</html>
