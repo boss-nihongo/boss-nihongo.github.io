@@ -91,6 +91,10 @@ h1 rt{font-size:.3em;color:var(--rt);font-family:var(--f-ui);font-weight:500;let
 .shoplogo a{display:inline-flex;align-items:center;gap:6px;color:inherit;text-decoration:none}
 .shoplogo a:hover{text-decoration:underline}
 .shoplogo img{border-radius:5px}
+.herobox{padding-top:44px}.herobox .bubble{top:48px}
+.toEn{position:absolute;top:6px;right:12px;z-index:3;background:rgba(255,255,255,.92);color:var(--ac,#2a5bd7);font-weight:700;font-size:13px;padding:7px 12px;border-radius:999px;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.sharebox{display:grid;gap:12px;text-align:center;background:linear-gradient(135deg,#e8f0ff,#f7f9ff)}.sharebox b{display:block;font-size:17px;margin-bottom:4px}.sharebox span{font-size:14px;opacity:.8}
+.sharebig{width:100%;padding:16px;font-size:17px}
 .readbox{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
 
 .ava{width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:50% 4%;background:var(--soft);border:2px solid var(--line);flex:none}
@@ -235,10 +239,10 @@ h1 rt{font-size:.3em;color:var(--rt);font-family:var(--f-ui);font-weight:500;let
 .fcbar{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--mute);margin:10px 0}
 .fcbar .prog{flex:1;height:6px;background:var(--chip);border-radius:3px;margin:0 10px;overflow:hidden}
 .fcbar .prog i{display:block;height:100%;background:var(--accent)}
-.grade{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.grade{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
 .grade button{border:0;border-radius:12px;padding:12px 4px;font-weight:700;display:grid;gap:2px;color:#fff}
 .grade button small{font-weight:500;font-size:11px;opacity:.85}
-.grade .g0{background:#c4475b}.grade .g1{background:#d08a2c}.grade .g2{background:#2f8f5b}
+.grade .g0{background:#c4475b}.grade .g1{background:#d08a2c}.grade .g2{background:#3a8f7a}.grade .g3{background:#2f6fb0}
 .flipb{width:100%;margin-top:12px;padding:14px;font-size:16px}
 .fcsay{background:none;border:1px solid var(--line);border-radius:999px;padding:6px 12px;color:var(--accent)}
 .curve{font-size:13px;color:var(--mute);line-height:1.7}
@@ -360,7 +364,7 @@ function nextStory(lv){return lvStories(lv).find(s=>!P.done[s.id])}
 function home(){
   const ns=nextStory(P.lv); const read=Object.keys(P.done).length;
   $('#app').innerHTML=`
-  <header class="hero herobox"><div class="txt">
+  <header class="hero herobox"><a class="toEn" href="https://en.bazonglearn.com/?source=jp" onclick="try{gcEv('jp-to-en')}catch(e){}">🇬🇧 英文單字版 ›</a><div class="txt">
     <span class="eyebrow">JLPT 單字 ・ 日文版</span>
     <h1>霸總教你背<ruby>日本語<rt>にほんご</rt></ruby></h1>
     <span class="tag">女人，一天一篇，給我乖乖讀完。單字、句型、台詞，我親自教。</span></div>
@@ -409,7 +413,7 @@ function reader(){
   const s=S.find(x=>x.id===st.sid); const ws=wordsOf(s), ls=linesOf(s);
   $('#app').innerHTML=`
   <div class="bar"><div class="row"><button class="back" id="back">‹ 返回</button><span class="sp"></span>
-    <button class="tg" id="shareBtn">📤 分享</button><button class="tg" id="readAll">🔊 讓他唸給妳聽</button></div>
+    <button class="tg" id="readAll">🔊 讓他唸給妳聽</button></div>
     <div class="row"><div class="seg" style="flex:2"><button data-mode="kj" aria-pressed="${P.mode==='kj'}">漢字＋假名</button><button data-mode="kana" aria-pressed="${P.mode==='kana'}">只有假名</button></div>
     <button class="tg" data-gltog aria-pressed="${P.gl}">中文</button></div></div>
   <article class="story ${P.gl?'':'hide-g'}">
@@ -428,7 +432,8 @@ function reader(){
     <div class="vlist">${ws.map(vrow).join('')}</div>
     <div class="btns"><button class="btn" id="addAll">全部加入生字本</button><button class="btn ghost" id="sayAll">🔊 連續朗讀單字</button></div></section>
   <section class="box" id="quiz"></section>
-  <section class="box readbox"><span>${P.done[s.id]?'✓ 這篇已經讀過了':'讀完了？不想考試也可以直接標記。'}</span><button class="btn${P.done[s.id]?' ghost':''}" id="markRead">${P.done[s.id]?'取消已讀':'標記為已讀'}</button></section>`;
+  <section class="box readbox"><span>${P.done[s.id]?'✓ 這篇已經讀過了':'讀完了？不想考試也可以直接標記。'}</span><button class="btn${P.done[s.id]?' ghost':''}" id="markRead">${P.done[s.id]?'取消已讀':'標記為已讀'}</button></section>
+  <section class="box sharebox"><div><b>喜歡這位霸總？</b><span>把他的日文名台詞做成卡片，分享給朋友一起背。</span></div><button class="btn sharebig" id="shareBtn">📤 分享霸總卡</button></section>`;
   quiz(s); window.scrollTo(0,0);
 }
 function vrow(k){const e=D[k]; return `<button class="vrow" data-k="${k}"><span class="jp">${P.mode==='kana'?e.r:disp(k)}<small>${P.mode==='kana'?disp(k):e.r}</small></span><span>${e.zh}</span><span class="lvp">${e.lv}${P.book.includes(k)?' ★':''}</span></button>`}
@@ -448,12 +453,14 @@ function quiz(s){
 function bookView(){
   $('#app').innerHTML=`<header class="hero"><span class="eyebrow">生字本</span><h1>我的生字本</h1><span class="tag">妳收進口袋的字，我都看著。抽考答錯的，我也幫妳放進來了。</span></header>
   <section class="sec"><h3>單字卡・總裁的記憶特訓</h3><div class="decks">${deckBox('N5-N4')}${deckBox('N3-N2')}</div>
-  <p class="curve">照遺忘曲線排程：記得的字，隔 1、3、7、14、30 天再考；忘了的，當場再考一次。每天每個等級最多 20 張新卡，從妳的生字本和讀過的故事先排。連續隔 30 天還記得，就算熟記。</p></section>
+  <p class="curve">照遺忘曲線排程：翻面後自己選下次什麼時候再考——1 天、3 天或 14 天；還不熟就按「再複習」，這一輪最後會再考一次。一直選 14 天的字，間隔會再拉長（28、56 天…），隔 28 天以上還記得就算熟記。每天每個等級最多 20 張新卡，從妳的生字本和讀過的故事先排。</p></section>
   ${P.book.length?`<section class="box"><div class="vlist">${P.book.filter(k=>D[k]).map(vrow).join('')}</div><button class="btn ghost" id="sayBook">🔊 連續朗讀生字本</button></section>`:`<div class="emptyboss"><img src="${IMG.hero}" alt=""><b style="color:var(--ink);font-size:17px">一個字都沒收？我很失望。</b><span>打開一篇故事，點藍色單字就能收藏。</span></div>`}`;
 }
 
 /* ---------- 單字卡（遺忘曲線） ---------- */
-const IV=[1,3,7,14,30,60,120];      // 記得後的間隔（天）
+const IV=[1,3,14];      // 可選的複習間隔（天）
+const GRAD=28;         // 間隔 ≥28 天算熟記
+function nextIv(c,g){const d=IV[g-1]; return (g===3&&c&&c.iv>=14)?c.iv*2:d}
 const NEW_PER_DAY=20;
 const LVNAME={'N5-N4':'N5–N4 新進員工','N3-N2':'N3–N2 總裁夫人候選'};
 function addDays(n){const d=new Date(); d.setDate(d.getDate()+n); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
@@ -463,7 +470,7 @@ function deckWords(lv){const o=[]; const seen=new Set();
   [...rd,...un].forEach(s=>wordsOf(s).forEach(k=>{ if(D[k]&&!seen.has(k)){seen.add(k);o.push(k)} }));
   return o}
 function deckStat(lv){const t=today(), W=deckWords(lv); let due=0,learned=0,grad=0;
-  W.forEach(k=>{const c=P.srs[k]; if(!c) return; learned++; if(c.iv>=30) grad++; if(c.due<=t) due++});
+  W.forEach(k=>{const c=P.srs[k]; if(!c) return; learned++; if(c.iv>=GRAD) grad++; if(c.due<=t) due++});
   const nd=(P.srsNew[lv]&&P.srsNew[lv].d===t)?P.srsNew[lv].n:0;
   const fresh=Math.min(NEW_PER_DAY-nd, W.filter(k=>!P.srs[k]).length);
   return {total:W.length,due,learned,grad,fresh:Math.max(0,fresh)}}
@@ -477,8 +484,7 @@ function gradeCard(g){const k=FC.q[FC.i]; const t=today(); const c=P.srs[k]||{b:
   if(isNew){ const r=P.srsNew[FC.lv]; P.srsNew[FC.lv]=(r&&r.d===t)?{d:t,n:r.n+1}:{d:t,n:1} }
   c.n++;
   if(g===0){ c.b=0; c.iv=0; c.due=t; FC.q.push(k); FC.again++ }
-  else if(g===1){ c.iv=Math.max(1,Math.round((c.iv||1)*1.2)); c.due=addDays(c.iv) }
-  else { c.iv=IV[Math.min(c.b,IV.length-1)]; c.b++; c.due=addDays(c.iv) }
+  else { c.iv=nextIv(c,g); c.b=g; c.due=addDays(c.iv) }
   P.srs[k]=c; save(); FC.i++; FC.flip=false; if(g>0) FC.done++;
   if(FC.i>=FC.q.length) checkin();
   render()}
@@ -491,7 +497,7 @@ function cardsView(){
   const head=`<button class="back" data-tab="book">‹ 回生字本</button>`;
   if(FC.i>=FC.q.length){
     $('#app').innerHTML=`${head}<div class="emptyboss"><img class="${iflip('hero')}" src="${isrc('hero')}" alt=""><b style="color:var(--ink);font-size:18px">${FC.total?'不錯。今天的份，背完了。':'今天沒有要背的。'}</b>
-      <span>${FC.total?`複習 ${FC.total} 張${FC.again?`，忘了 ${FC.again} 次也都補回來了`:''}。明天我會再考妳。`:'去讀一篇新故事，我再幫妳排新卡。'}</span>
+      <span>${FC.total?`複習 ${FC.total} 張${FC.again?`，按了 ${FC.again} 次再複習也都補回來了`:''}。時間到了我會再考妳。`:'去讀一篇新故事，我再幫妳排新卡。'}</span>
       <button class="btn" data-tab="book">回生字本</button></div>`; return}
   const k=FC.q[FC.i], e=D[k], pct=Math.round(FC.i/FC.q.length*100);
   const word=P.mode==='kana'?esc(e.r):`<ruby>${esc(disp(k))}<rt>${esc(e.r)}</rt></ruby>`;
@@ -502,7 +508,7 @@ function cardsView(){
       <button class="fcsay" data-say="${esc(e.r)}">🔊 聽發音</button>
       <div class="ex">${rubyEx(e.ex)}<small>${esc(e.exzh)}</small></div>`
     :`<div class="pos">這個字，什麼意思？</div><div class="big">${front}</div><button class="fcsay" data-say="${esc(e.r)}">🔊</button>`}</div>
-  ${FC.flip?`<div class="grade"><button class="g0" data-grade="0">忘了<small>等一下再考</small></button><button class="g1" data-grade="1">模糊<small>過幾天再考</small></button><button class="g2" data-grade="2">記得<small>${(()=>{const c=P.srs[k];return (IV[Math.min(c?c.b:0,IV.length-1)])+' 天後'})()}</small></button></div>`
+  ${FC.flip?`<div class="grade"><button class="g0" data-grade="0">再複習<small>這輪再考</small></button><button class="g1" data-grade="1">1 天<small>明天再考</small></button><button class="g2" data-grade="2">3 天<small>3 天後</small></button><button class="g3" data-grade="3">${(()=>{const n=nextIv(P.srs[k],3);return n+' 天<small>'+(n>14?'越記越久':'兩週後')+'</small>'})()}</button></div>`
     :`<button class="btn flipb" id="fcFlip">翻面看答案</button>`}`;
 }
 function render(){
